@@ -15,3 +15,4 @@ MonoBehaviour:
   _levelDescriptors:
   - {fileID: 7030410041568959, guid: f37d8a855d5f90c45a7500a3d3976b63, type: 3}
   - {fileID: 7030410041568959, guid: 8be48ccb3cb9d1a4eb7bcc1b5d752a03, type: 3}
+  - {fileID: 7030410041568959, guid: f7d3826c78b13a1408d5c204c9d9c85d, type: 3}
