@@ -9,6 +9,8 @@ namespace DAATS.Component.Interface
 
         IPortal ConnectedPortal { get; }
 
+        void Teleport(ITeleportable teleportableElement);
+
         void SubscribeOnTeleportEnter(Action<Collider, IPortal> onTeleoprtEnter);
         void UnsubscribeOnTeleportEnter(Action<Collider, IPortal> onTeleoprtEnter);
     }

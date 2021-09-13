@@ -27,7 +27,7 @@ namespace DAATS.System
             if(!ReferenceEquals(collider.transform, _teleportable.Transform))
                 return;
 
-            _teleportable.Transform.position = portal.ConnectedPortal.Transform.position;
+            portal.Teleport(_teleportable);
         }
     }
 }
