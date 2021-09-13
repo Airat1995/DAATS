@@ -5,6 +5,7 @@ using DAATS.Component.Interface;
 using DAATS.Initializer.Component;
 using DAATS.UserData;
 using UnityEngine;
+using System;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -67,17 +68,14 @@ namespace DAATS.Initializer.Level
 
         private void OnValidate()
         {
-            if (string.IsNullOrEmpty(_levelInfo.Name))
-                Debug.LogError("Level cannot be instantiated because it's name is empty!");
-            else
+            if (!string.IsNullOrEmpty(_levelInfo.Name))
                 gameObject.name = _levelInfo.Name;
         }
 
-
+#if UNITY_EDITOR
         [ContextMenu("Fill level info")]
         private void FillLevelInfo()
         {
-#if UNITY_EDITOR
             var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
             _exit = prefabStage.FindComponentOfType<Exit>();
             _portal = prefabStage.FindComponentsOfType<Portal>().ToList();
@@ -92,8 +90,14 @@ namespace DAATS.Initializer.Level
                 .Where(spawnPoint => spawnPoint.tag.Equals(ChaoticEnemySpawnPointTag)).ToList();
             _stalkerEnemySpawnPoints = prefabStage.FindComponentsOfType<SimpleSpawnPoint>()
                 .Where(spawnPoint => spawnPoint.tag.Equals(StalkerEnemySpawnPointTag)).ToList();
-            EditorUtility.SetDirty(gameObject);
-#endif
+            EditorUtility.SetDirty(gameObject);        }
+        public void FillInfo(string levelName, int levelNum, bool hide)
+        {
+            _levelInfo.LevelNum = levelNum;
+            _levelInfo.Name = levelName;
+            _hiddenVision = hide;
         }
+#endif
+
     }
 }
