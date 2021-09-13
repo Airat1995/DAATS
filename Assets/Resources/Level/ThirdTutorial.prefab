@@ -920,6 +920,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6491530163152090311}
     m_Modifications:
+    - target: {fileID: 445511316531841519, guid: 12dacbcde430a904d8c9eee6bbc394a3,
+        type: 3}
+      propertyPath: _connectedPortal
+      value: 
+      objectReference: {fileID: 7684170206473962915}
     - target: {fileID: 1284425407765063399, guid: 12dacbcde430a904d8c9eee6bbc394a3,
         type: 3}
       propertyPath: m_Name

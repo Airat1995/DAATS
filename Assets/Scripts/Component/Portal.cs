@@ -14,6 +14,8 @@ namespace DAATS.Component
         public Transform Transform => transform;
 
         private Action<Collider, IPortal> _onPortalEnterActions = (collider, portal) => { };
+
+        private bool _teleportWasUsed = false;
         
         public void SubscribeOnTeleportEnter(Action<Collider, IPortal> onTeleoprtEnter)
         {
@@ -28,11 +30,31 @@ namespace DAATS.Component
         private void OnTriggerEnter(Collider collider)
         {
             _onPortalEnterActions?.Invoke(collider, this);
+            _teleportWasUsed = true;
+        }
+
+        private void OnTriggerExit(Collider other)
+        {
+            _teleportWasUsed = false;
         }
 
         private void OnDestroy()
         {
             _onPortalEnterActions = null;
+        }
+
+        public void Teleport(ITeleportable teleportableElement)
+        {
+            if(_teleportWasUsed)
+                return;
+            teleportableElement.Transform.position = _connectedPortal.Transform.position;
+            _connectedPortal.SetTeleported();
+            
+        }
+
+        private void SetTeleported()
+        {
+            _teleportWasUsed = true;
         }
     }
 }
