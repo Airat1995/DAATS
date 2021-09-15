@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace DAATS.Component.Interface
 {
     public interface IWaypointEnemy : IMovableEnemy
     {
-        public List<IWaypoint> Waypoints { get; }
+        List<IWaypoint> Waypoints { get; }
     }
 }

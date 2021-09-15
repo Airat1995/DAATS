@@ -1,28 +1,77 @@
 ﻿using DAATS.Component.Interface;
 using DAATS.System.Interface;
+using UnityEngine;
 
 namespace DAATS.Initializer.System
 {
-    public class WaypointMovementSystem : IUpdatableSystem
+    public class WaypointMovementSystem : IWaypointMovementSystem
     {
-        private readonly IMovementSystem _movementSystem;
-        private readonly IWaypointEnemy _waypointEnemy;
+        //Distance where we think that object meet final position
+        public static readonly float DISTANCE_THRESHOLD = 0.005f;
+        private readonly Transform _moveTransform;
+        private readonly IWaypointEnemy _enemy;
+        
         private int _moveIndex = 0;
-        private bool _moveBack = false;
-
-        public WaypointMovementSystem(IMovementSystem movementSystem, IWaypointEnemy waypointEnemy)
+        private bool _moveBack = false;        
+        private bool _moveFinished = true;
+        private Vector3 _endPosition;
+        private Vector3 _currentPosition;
+        private float _speed;
+                
+        private Vector3 MoveVector
         {
-            _movementSystem = movementSystem;
-            _waypointEnemy = waypointEnemy;
+            get
+            {
+                var moveVector = (_endPosition - _currentPosition).normalized;
+                if (moveVector != Vector3.zero)
+                    return moveVector;
+
+                return _moveTransform.forward.normalized;
+            }
+        }
+
+        public WaypointMovementSystem(IWaypointEnemy waypointEnemy)
+        {
+            _enemy = waypointEnemy;
+            _moveTransform = waypointEnemy.Transform;
         }
 
         public void Update(float deltaTime)
         {
-            if (!_movementSystem.MoveFinished) return;
-            _movementSystem.Move(_waypointEnemy.Transform.position, 
-                _waypointEnemy.Waypoints[_moveIndex].Position, _waypointEnemy.Speed);
+            Move(deltaTime);
+            if (!_moveFinished) return;
+            SetNewMovePoint(_enemy.Transform.position,
+                _enemy.Waypoints[_moveIndex].Position, _enemy.Speed);
+        }
 
-            if (_moveIndex == _waypointEnemy.Waypoints.Count - 1)
+        public void SetPosition(Vector3 position)
+        {
+            _moveTransform.transform.position = position;
+            _currentPosition = position;
+        }
+
+        private void Move(float deltaTime)
+        {
+            if (Vector3.Distance(_currentPosition, _endPosition) <= DISTANCE_THRESHOLD)
+            {
+                Stop();
+                return;
+            }
+
+            Vector3 finalDistPosition = _currentPosition + MoveVector * _speed * deltaTime;
+            _moveTransform.LookAt(finalDistPosition);
+            SetPosition(finalDistPosition);
+        }
+
+        private void SetNewMovePoint(Vector3 startPosition, Vector3 endPosition, float speed)
+        {
+            _moveTransform.transform.position = startPosition;
+            _currentPosition = startPosition;
+            _endPosition = new Vector3(endPosition.x, startPosition.y, endPosition.z);
+            _speed = speed;
+            _moveFinished = false;
+
+            if (_moveIndex == _enemy.Waypoints.Count - 1)
                 _moveBack = true;
             else if (_moveIndex == 0 && _moveBack)
                 _moveBack = false;
@@ -31,6 +80,12 @@ namespace DAATS.Initializer.System
                 --_moveIndex;
             else
                 ++_moveIndex;
+        }
+
+        private void Stop()
+        {
+            _endPosition = _currentPosition;
+            _moveFinished = true;
         }
     }
 }

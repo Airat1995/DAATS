@@ -10,21 +10,21 @@ namespace DAATS.Component
         private MeshRenderer _renderer;
         public Material Material => _renderer.material;
 
-        private Action<Collision, IWall> _onWallHit = (collision, wall) => { };
+        private Action<Collider, IWall> _onWallHit = (collision, wall) => { };
 
-        public void SubscribeOnWallHit(Action<Collision, IWall> onWallHit)
+        public void SubscribeOnWallHit(Action<Collider, IWall> onWallHit)
         {
             _onWallHit += onWallHit;
         }
 
-        public void UnsubscribeOnWallHit(Action<Collision, IWall> onWallHit)
+        public void UnsubscribeOnWallHit(Action<Collider, IWall> onWallHit)
         {
             _onWallHit -= onWallHit;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        void OnTriggerEnter(Collider collider)
         {
-            _onWallHit.Invoke(collision, this);
+            _onWallHit.Invoke(collider, this);
         }
     }
 }

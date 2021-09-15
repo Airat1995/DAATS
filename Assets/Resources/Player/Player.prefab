@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 7700380203012616000}
   - component: {fileID: 3458443660447701247}
   - component: {fileID: 1071733521667007884}
-  - component: {fileID: -6283230400356478839}
-  - component: {fileID: 1100262831986132586}
+  - component: {fileID: -6560376831579550042}
   - component: {fileID: -5055940080962133045}
   m_Layer: 0
   m_Name: Player
@@ -84,24 +83,8 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7844655430937807155}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &-6283230400356478839
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7844655430937807155}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 94
-  m_CollisionDetection: 0
---- !u!135 &1100262831986132586
-SphereCollider:
+--- !u!143 &-6560376831579550042
+CharacterController:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -111,7 +94,12 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
+  m_Height: 1
   m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.0001
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &-5055940080962133045
 MonoBehaviour:
@@ -125,6 +113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc199d7c269c90a46a32b62fce589354, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 10
+  _speed: 3
   _maxHealth: 5
   _renderer: {fileID: 3458443660447701247}
+  _characterController: {fileID: -6560376831579550042}

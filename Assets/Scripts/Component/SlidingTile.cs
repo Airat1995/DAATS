@@ -9,6 +9,7 @@ namespace DAATS.Component
     {
         private Action<Collider, ISpecialTile> _onTileEnterAction = (collider, tile) => { };
         private Action<Collider, ISpecialTile> _onTileUpdateAction = (collider, tile) => { };
+        private Action<Collider, ISpecialTile> _onTileExitAction = (collider, tile) => { };
 
         [SerializeField]
         private MeshRenderer _renderer;
@@ -26,6 +27,10 @@ namespace DAATS.Component
             _onTileUpdateAction += onTileUpdate;
         }
 
+        public void SubscribeOnTileExit(Action<Collider, ISpecialTile> onTileExit)
+        {
+            _onTileExitAction += onTileExit;
+        }
 
         public void UnsubscribeOnTileEnter(Action<Collider, ISpecialTile> onTileEnter)
         {
@@ -37,6 +42,10 @@ namespace DAATS.Component
             _onTileUpdateAction -= onTileUpdate;
         }
 
+        public void UnsubscribeOnTileExit(Action<Collider, ISpecialTile> onTileExit)
+        {
+            _onTileExitAction -= onTileExit;
+        }
 
         private void OnTriggerEnter(Collider collider)
         {
@@ -46,6 +55,11 @@ namespace DAATS.Component
         private void OnTriggerStay(Collider collider)
         {
             _onTileUpdateAction.Invoke(collider, this);
+        }
+
+        private void OnTriggerExit(Collider collider)
+        {
+            _onTileExitAction.Invoke(collider, this);
         }
     }
 }

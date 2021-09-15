@@ -7,7 +7,9 @@ namespace DAATS.Component.Interface
     {
         void SubscribeOnTileEnter(Action<Collider, ISpecialTile> onTileEnter);
         void SubscribeOnTileUpdate(Action<Collider, ISpecialTile> onTileUpdate);
+        void SubscribeOnTileExit(Action<Collider, ISpecialTile> onTileExit);
         void UnsubscribeOnTileEnter(Action<Collider, ISpecialTile> onTileEnter);
         void UnsubscribeOnTileUpdate(Action<Collider, ISpecialTile> onTileUpdate);
+        void UnsubscribeOnTileExit(Action<Collider, ISpecialTile> onTileExit);
     }
 }

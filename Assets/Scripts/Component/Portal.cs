@@ -1,4 +1,5 @@
 ﻿using DAATS.Component.Interface;
+using DAATS.System.Interface;
 using System;
 using UnityEngine;
 
@@ -43,13 +44,12 @@ namespace DAATS.Component
             _onPortalEnterActions = null;
         }
 
-        public void Teleport(ITeleportable teleportableElement)
+        public void Teleport(ITeleportable teleportableElement, IMovementSytem movementSystem)
         {
             if(_teleportWasUsed)
                 return;
-            teleportableElement.Transform.position = _connectedPortal.Transform.position;
-            _connectedPortal.SetTeleported();
-            
+            movementSystem.SetPosition( _connectedPortal.Transform.position);
+            _connectedPortal.SetTeleported();            
         }
 
         private void SetTeleported()
