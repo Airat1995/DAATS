@@ -26,7 +26,8 @@ namespace DAATS.Initializer.Level.Creator
         public List<IWaypointEnemy> WaypointEnemies { get; private set; }
         public List<ISlidingTile> SlidingTiles { get; private set; }
         public List<IWall> Walls { get; private set; }
-        public bool HiddenVision{get; private set; }        
+        public bool HiddenVision{get; private set; }
+        public float CameraOffset { get; private set; }
 
         public LevelCreator(LevelData levelData, Transform levelSpawnTransform, IResourceManager resourceManager)
         {
@@ -48,6 +49,7 @@ namespace DAATS.Initializer.Level.Creator
             Portals = _spawnedLevelDescriptor.Portals;
             SlidingTiles = _spawnedLevelDescriptor.SlidingTiles;
             Walls = _spawnedLevelDescriptor.Walls;
+            CameraOffset = _spawnedLevelDescriptor.CameraOffset;
         }
 
         public void DestroyLevel()

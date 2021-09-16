@@ -29,6 +29,7 @@ namespace DAATS.Initializer.GameWorld.World
         private ISetUserProgressData _setUserProgress => _container.Resolve<ISetUserProgressData>();
         private IResourceManager _resourceManager => _container.Resolve<IResourceManager>();
         private ILevelCollection _levelCollection => _container.Resolve<ILevelCollection>();
+        private ICameraComponent _camera => _container.Resolve<ICameraComponent>();
 
         public GameplayWorld(DiContainer container)
         {
@@ -82,16 +83,20 @@ namespace DAATS.Initializer.GameWorld.World
             _container.Rebind<IPlayer>().FromInstance(_levelCreator.Player);
 
             var inputSystem = new InputSystem();
+           _updatableSystems.Add(inputSystem);
+
             var playerMove = new PlayerMovementSystem(inputSystem, _levelCreator.Player);
+           _updatableSystems.Add(playerMove);
 
             CreateWaypointEnemies();
             CreateChaoticEnemies();
             CreateStalkerEnemies();
 
-             _callableSystems.Add(new PortalSystem(_levelCreator.Player, playerMove, _levelCreator.Portals));
-
-            _updatableSystems.Add(inputSystem);
-            _updatableSystems.Add(playerMove);
+            var portalSystem = new PortalSystem(_levelCreator.Player, playerMove, _levelCreator.Portals);
+             _callableSystems.Add(portalSystem);
+            
+            var cameraFollow = new CameraFollowSystem(_camera, _levelCreator.Player, _levelCreator.CameraOffset);
+            _updatableSystems.Add(cameraFollow);
 
             var requiredCollectionSystem =
                 new RequiredCollectionSystem(new Queue<IRequiredCollectable>(_levelCreator.RequiredCollectables),

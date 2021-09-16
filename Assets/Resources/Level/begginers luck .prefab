@@ -210,6 +210,7 @@ MonoBehaviour:
     LevelNum: 0
     Name: 'begginers luck '
   _hiddenVision: 0
+  _cameraOffset: 32
   _playerSpawnPoint: {fileID: 5757501776341149685}
   _waypointEnemySpawnTransforms: []
   _chaoticEnemySpawnPoints: []
@@ -9587,6 +9588,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6914088676694373087}
     m_Modifications:
+    - target: {fileID: -7073269587561367702, guid: 317ed9c33752d234fa7807f84c37c2d5,
+        type: 3}
+      propertyPath: m_NavMeshData
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5046584657951152960, guid: 317ed9c33752d234fa7807f84c37c2d5,
         type: 3}
       propertyPath: m_RootOrder
