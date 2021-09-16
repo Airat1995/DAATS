@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using DAATS.Component.Interface;
+﻿using DAATS.Component.Interface;
+using System.Collections.Generic;
 
 namespace DAATS.Initializer.Level.Creator.Interface
 {
@@ -10,7 +10,10 @@ namespace DAATS.Initializer.Level.Creator.Interface
         IExit Exit { get; }
         List<IPortal> Portals { get; }
 
-        bool HiddenVision{ get; }
+        bool HiddenVision { get; }
+
+        float CameraOffset { get; }
+
 
         List<IStalkerEnemy> StalkerEnemies { get; }
         List<IChaoticEnemy> ChaoticEnemies { get; }

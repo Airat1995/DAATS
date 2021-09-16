@@ -1,4 +1,6 @@
-﻿using DAATS.Initializer.GameWorld.Loader;
+﻿using DAATS.Component.Interface;
+using DAATS.Initializer.Component;
+using DAATS.Initializer.GameWorld.Loader;
 using DAATS.Initializer.GameWorld.Loader.Interface;
 using DAATS.Initializer.Level;
 using DAATS.Initializer.Level.Interface;
@@ -22,6 +24,9 @@ namespace DAATS.Initializer
 
         [SerializeField]
         private LevelCollection _levelCollection;
+
+        [SerializeField]
+        private CameraComponent _cameraComponent;
 
         public override void InstallBindings()
         {
@@ -56,6 +61,10 @@ namespace DAATS.Initializer
 
             Container.Bind<ILevelCollection>()
                 .FromInstance(_levelCollection)
+                .AsSingle();
+
+            Container.Bind<ICameraComponent>()
+                .FromInstance(_cameraComponent)
                 .AsSingle();
         }
     }
