@@ -12,7 +12,11 @@ GameObject:
   - component: {fileID: 6185579048983062592}
   m_Layer: 0
 <<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
+<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
   m_Name: BegginersLuck
+=======
+  m_Name: begginers luck
+>>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
 =======
   m_Name: begginers luck
 >>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
@@ -212,9 +216,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _levelInfo:
 <<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
+<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
     LevelNum: 0
     Name: BegginersLuck
 =======
+=======
+>>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
     LevelNum: 3
     Name: 'begginers luck '
 >>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
@@ -9602,8 +9609,12 @@ PrefabInstance:
       propertyPath: m_NavMeshData
       value: 
 <<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
+<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
       objectReference: {fileID: 23800000, guid: 0ab277cf3b660144493d7a3e61eb4683,
         type: 2}
+=======
+      objectReference: {fileID: 0}
+>>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
 =======
       objectReference: {fileID: 0}
 >>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
