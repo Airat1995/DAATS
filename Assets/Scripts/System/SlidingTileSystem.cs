@@ -42,10 +42,6 @@ namespace DAATS.System
             if (_movementSystem.MoveBlocked) return;
             if (!_player.IsSameGameObject(collider.gameObject)) return;
             var moveVector = !_reverseMove || _lastNormal == Vector3.zero ? _movementSystem.MoveVector : _lastNormal;
-            Debug.Log($"Is Reverse move {_reverseMove}");
-            Debug.Log($"Move Vector is {moveVector}");
-            Debug.Log($"Normal Vector is {_lastNormal}");
-            Debug.Log($"Player Move Vector is {_movementSystem.MoveVector}");
             _movementSystem.SetFinalPosition(moveVector * OFFSET);
             _movementSystem.BlockMove(true);
             _reverseMove = true;
