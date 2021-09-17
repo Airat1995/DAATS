@@ -12,7 +12,6 @@ namespace DAATS.System
         private readonly IPlayer _player;
         private readonly IControllerMovementSystem _movementSystem;
         private bool _reverseMove = false;
-        private bool _sliding = false;
         private Vector3 _lastNormal = Vector3.zero;
 
         public SlidingTileSystem(IPlayer player, IControllerMovementSystem movementSystem, List<ISlidingTile> slidingTiles, List<IWall> walls)
@@ -34,7 +33,6 @@ namespace DAATS.System
 
         private void OnSlideEnd(Collider collider, ISpecialTile slideTile)
         {
-            _sliding = false;
             _lastNormal = Vector3.zero;
             _reverseMove = false;
         }
@@ -44,9 +42,12 @@ namespace DAATS.System
             if (_movementSystem.MoveBlocked) return;
             if (!_player.IsSameGameObject(collider.gameObject)) return;
             var moveVector = !_reverseMove || _lastNormal == Vector3.zero ? _movementSystem.MoveVector : _lastNormal;
+            Debug.Log($"Is Reverse move {_reverseMove}");
+            Debug.Log($"Move Vector is {moveVector}");
+            Debug.Log($"Normal Vector is {_lastNormal}");
+            Debug.Log($"Player Move Vector is {_movementSystem.MoveVector}");
             _movementSystem.SetFinalPosition(moveVector * OFFSET);
             _movementSystem.BlockMove(true);
-            _sliding = true;
             _reverseMove = true;
         }
 
@@ -55,12 +56,10 @@ namespace DAATS.System
             if (!_player.IsSameGameObject(collider.gameObject)) return;
             _movementSystem.BlockMove(false);
 
-            if (!_sliding) return;
             Physics.Raycast(new Ray(collider.transform.position, collider.transform.forward), out var hitInfo, 1.0f);
 
             Vector3 incomingVec = hitInfo.point - collider.transform.position;
             _lastNormal = Vector3.Reflect(incomingVec, hitInfo.normal);
-            _sliding = false;
         }
     }
 }

@@ -21,10 +21,9 @@ namespace DAATS.Initializer.System
         public Vector3 MoveVector
         {
             get
-            {
-                var moveVector = (_endPosition - _currentPosition).normalized;
-                if(moveVector != Vector3.zero)
-                    return moveVector;
+            {               
+                if(_blocked)
+                    return  (_endPosition - _currentPosition).normalized;
 
                 return _currentPlayer.Transform.forward;
             }
@@ -43,7 +42,6 @@ namespace DAATS.Initializer.System
             var inputVector = _inputSystem.InputData;
             var movementVector = !_blocked ? new Vector3(inputVector.x, 0, inputVector.y) : MoveVector;
             Move(movementVector * _speed * deltaTime);
-
         }
 
         public void BlockMove(bool block)
@@ -56,9 +54,11 @@ namespace DAATS.Initializer.System
             if(moveVector == Vector3.zero)
                 return;
             _playerCharacter.Move(moveVector);
-            _endPosition = _currentPosition + moveVector;
             _currentPosition = _currentPlayer.Transform.position;
             _currentPlayer.Transform.rotation = Quaternion.LookRotation(moveVector);
+
+            if(_endPosition == _currentPosition)
+                _blocked = false;
         }
 
         public void SetFinalPosition(Vector3 endPosition)

@@ -7,21 +7,21 @@ namespace DAATS.Initializer.Component
     [RequireComponent(typeof(Collider))]
     public class Exit : MonoBehaviour, IExit
     {
-        private Action<Collision> _onCollisionEnter = collision => { };
+        private Action<Collider> _onCollisionEnter = collision => { };
 
-        public void SubscribeOnCollide(Action<Collision> collisionAction)
+        public void SubscribeOnCollide(Action<Collider> collisionAction)
         {
             _onCollisionEnter += collisionAction;
         }
 
-        public void UnsubcribeOnCollide(Action<Collision> collisionAction)
+        public void UnsubcribeOnCollide(Action<Collider> collisionAction)
         {
             _onCollisionEnter -= collisionAction;
         }
 
-        void OnCollisionEnter(Collision collision)
+        void OnTriggerEnter(Collider collider)
         {
-            _onCollisionEnter?.Invoke(collision);
+            _onCollisionEnter?.Invoke(collider);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace DAATS.Component.Interface
 {
     public interface IExit : IComponent
     {
-        void SubscribeOnCollide(Action<Collision> collisionAction);
-        void UnsubcribeOnCollide(Action<Collision> collisionAction);
+        void SubscribeOnCollide(Action<Collider> collisionAction);
+        void UnsubcribeOnCollide(Action<Collider> collisionAction);
     }
 }

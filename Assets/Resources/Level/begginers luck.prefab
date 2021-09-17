@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6914088676694373087}
   - component: {fileID: 6185579048983062592}
   m_Layer: 0
-  m_Name: 'begginers luck '
+  m_Name: begginers luck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelInfo:
-    LevelNum: 0
+    LevelNum: 3
     Name: 'begginers luck '
   _hiddenVision: 0
   _cameraOffset: 32
