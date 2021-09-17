@@ -29,6 +29,7 @@ namespace DAATS.Initializer.GameWorld.World
         private ISetUserProgressData _setUserProgress => _container.Resolve<ISetUserProgressData>();
         private IResourceManager _resourceManager => _container.Resolve<IResourceManager>();
         private ILevelCollection _levelCollection => _container.Resolve<ILevelCollection>();
+        private ICameraComponent _camera => _container.Resolve<ICameraComponent>();
 
         public GameplayWorld(DiContainer container)
         {
@@ -82,24 +83,26 @@ namespace DAATS.Initializer.GameWorld.World
             _container.Rebind<IPlayer>().FromInstance(_levelCreator.Player);
 
             var inputSystem = new InputSystem();
-            var movementSystem = new MovementSystem(_levelCreator.Player.Transform);
-            var playerMove = new PlayerMovementSystem(inputSystem, movementSystem, _levelCreator.Player);
+           _updatableSystems.Add(inputSystem);
+
+            var playerMove = new PlayerMovementSystem(inputSystem, _levelCreator.Player);
+           _updatableSystems.Add(playerMove);
 
             CreateWaypointEnemies();
             CreateChaoticEnemies();
             CreateStalkerEnemies();
 
-             _callableSystems.Add(new PortalSystem(_levelCreator.Player, _levelCreator.Portals));
-
-            _updatableSystems.Add(inputSystem);
-            _updatableSystems.Add(playerMove);
-            _updatableSystems.Add(movementSystem);
+            var portalSystem = new PortalSystem(_levelCreator.Player, playerMove, _levelCreator.Portals);
+             _callableSystems.Add(portalSystem);
+            
+            var cameraFollow = new CameraFollowSystem(_camera, _levelCreator.Player, _levelCreator.CameraOffset);
+            _updatableSystems.Add(cameraFollow);
 
             var requiredCollectionSystem =
                 new RequiredCollectionSystem(new Queue<IRequiredCollectable>(_levelCreator.RequiredCollectables),
                     _levelCreator.Player);
             var levelFinishSystem = new LevelFinishSystem(_levelCreator.Exit, _levelCreator.Player, this, requiredCollectionSystem);
-            var slidingSystem = new SlidingTileSystem(_levelCreator.Player, movementSystem,
+            var slidingSystem = new SlidingTileSystem(_levelCreator.Player, playerMove,
                 _levelCreator.SlidingTiles,
                 _levelCreator.Walls);
 
@@ -118,7 +121,7 @@ namespace DAATS.Initializer.GameWorld.World
         {
             foreach (var stalkerEnemy in _levelCreator.StalkerEnemies)
             {
-                _updatableSystems.Add(new StalkerMovementSystem(stalkerEnemy, _levelCreator.Player));
+                _updatableSystems.Add(new StalkerEnemyMovementSystem(stalkerEnemy, _levelCreator.Player));
             }
         }
 
@@ -126,7 +129,7 @@ namespace DAATS.Initializer.GameWorld.World
         {
             foreach (var chaoticEnemy in _levelCreator.ChaoticEnemies)
             {
-                _updatableSystems.Add(new ChaoticMovementSystem(chaoticEnemy));
+                _updatableSystems.Add(new ChaoticEnemyMovementSystem(chaoticEnemy));
             }
         }
 
@@ -134,9 +137,7 @@ namespace DAATS.Initializer.GameWorld.World
         {
             foreach (var waypointEnemy in _levelCreator.WaypointEnemies)
             {
-                var enemyMoveSystem = new MovementSystem(waypointEnemy.Transform);
-                _updatableSystems.Add(new WaypointMovementSystem(enemyMoveSystem, waypointEnemy));
-                _updatableSystems.Add(enemyMoveSystem);
+                _updatableSystems.Add(new WaypointMovementSystem(waypointEnemy));
             }
         }
     }

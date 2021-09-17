@@ -8,11 +8,12 @@ namespace DAATS.System
     class PortalSystem : IPortalSystem
     {
         private readonly ITeleportable _teleportable;
+        private readonly IControllerMovementSystem _movementSystem;
 
-        public PortalSystem(ITeleportable teleportable, List<IPortal> portals)
+        public PortalSystem(ITeleportable teleportable, IControllerMovementSystem movementSystem, List<IPortal> portals)
         {
             _teleportable = teleportable;
-
+            _movementSystem = movementSystem;
             foreach (var portal in portals)
             {
                 portal.SubscribeOnTeleportEnter(TeleportElement);
@@ -27,7 +28,7 @@ namespace DAATS.System
             if(!ReferenceEquals(collider.transform, _teleportable.Transform))
                 return;
 
-            portal.Teleport(_teleportable);
+            portal.Teleport(_teleportable, _movementSystem);
         }
     }
 }

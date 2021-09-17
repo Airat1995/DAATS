@@ -17,6 +17,10 @@ namespace DAATS.Initializer.Component
         [SerializeField]
         private MeshRenderer _renderer;
         public Material Material => _renderer.material;
+        
+        [SerializeField]
+        private CharacterController _characterController;    
+        public CharacterController CharacterController => _characterController;
 
 
         public bool IsSameGameObject(GameObject collisionGameObject)

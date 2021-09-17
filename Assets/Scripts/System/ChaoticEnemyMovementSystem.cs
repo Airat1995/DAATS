@@ -5,16 +5,21 @@ using UnityEngine;
 
 namespace DAATS.Initializer.System
 {
-    public class ChaoticMovementSystem : IUpdatableSystem
+    public class ChaoticEnemyMovementSystem : IChaoticEnemyMovementSystem
     {
         private readonly IChaoticEnemy _enemy;
 
         private IWaypoint _moveWaypoint = default;
 
-        public ChaoticMovementSystem(IChaoticEnemy enemy)
+        public ChaoticEnemyMovementSystem(IChaoticEnemy enemy)
         {
             _enemy = enemy;
             _enemy.Agent.speed = _enemy.Speed;
+        }
+
+        public void SetPosition(Vector3 position)
+        {
+           _enemy.Transform.position = position;
         }
 
         public void Update(float deltaTime)
@@ -25,7 +30,7 @@ namespace DAATS.Initializer.System
                 return;
             }
 
-            if (_enemy.Agent.remainingDistance <= MovementSystem.DISTANCE_THRESHOLD)
+            if (_enemy.Agent.remainingDistance <= WaypointMovementSystem.DISTANCE_THRESHOLD)
                 SetMovepoint();
         }
 

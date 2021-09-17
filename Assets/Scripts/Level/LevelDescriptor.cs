@@ -31,6 +31,10 @@ namespace DAATS.Initializer.Level
         public bool HiddenVision => _hiddenVision;
 
         [SerializeField]
+        private float _cameraOffset;
+        public float CameraOffset => _cameraOffset;
+
+        [SerializeField]
         private SimpleSpawnPoint _playerSpawnPoint;
         public ISpawnPoint PlayerSpawnTransform => _playerSpawnPoint;
 

@@ -90,6 +90,7 @@ MonoBehaviour:
     LevelNum: 2
     Name: ItFollows
   _hiddenVision: 0
+  _cameraOffset: 0
   _playerSpawnPoint: {fileID: 0}
   _waypointEnemySpawnTransforms: []
   _chaoticEnemySpawnPoints: []

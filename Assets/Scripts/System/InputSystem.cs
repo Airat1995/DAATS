@@ -8,7 +8,9 @@ namespace DAATS.Initializer.System
     public class InputSystem : IInputSystem
     {
         private Vector2 _movementVector;
-        public Vector2 MovementVector => _movementVector;
+        public Vector2 InputData => _movementVector;
+
+        private bool _blocked = false;
 
         private Gamepad _gamepad;
 
@@ -25,6 +27,11 @@ namespace DAATS.Initializer.System
             if(!_gamepad.added)
                 return;
             _movementVector = _gamepad.leftStick.ReadValue();
+        }
+
+        public void Block(bool block)
+        {
+            _blocked = block;
         }
     }
 }

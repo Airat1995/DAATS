@@ -645,6 +645,7 @@ MonoBehaviour:
     LevelNum: 1
     Name: SecondTutorial
   _hiddenVision: 0
+  _cameraOffset: 30
   _playerSpawnPoint: {fileID: 3322127474157423497}
   _waypointEnemySpawnTransforms:
   - {fileID: 3888353076313881202}

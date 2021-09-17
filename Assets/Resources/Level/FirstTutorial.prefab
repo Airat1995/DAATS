@@ -157,6 +157,7 @@ MonoBehaviour:
     LevelNum: 0
     Name: FirstTutorial
   _hiddenVision: 0
+  _cameraOffset: 30
   _playerSpawnPoint: {fileID: 727305736098327839}
   _waypointEnemySpawnTransforms: []
   _chaoticEnemySpawnPoints: []

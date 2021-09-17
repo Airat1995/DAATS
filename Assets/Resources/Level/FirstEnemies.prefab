@@ -255,6 +255,7 @@ MonoBehaviour:
     LevelNum: 1
     Name: FirstEnemies
   _hiddenVision: 0
+  _cameraOffset: 0
   _playerSpawnPoint: {fileID: 0}
   _waypointEnemySpawnTransforms: []
   _chaoticEnemySpawnPoints: []

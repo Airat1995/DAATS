@@ -22,9 +22,9 @@ namespace DAATS.Initializer.System
             _exitComponent.SubscribeOnCollide(CheckCollision);
         }
 
-        private void CheckCollision(Collision collision)
+        private void CheckCollision(Collider collider)
         {
-            if (_player.IsSameGameObject(collision.gameObject) && _collectionSystem.AllCollected)
+            if (_player.IsSameGameObject(collider.gameObject) && _collectionSystem.AllCollected)
                 _currentWorld.FinishLevel();
         }
     }
