@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &210177858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -558,7 +558,7 @@ MonoBehaviour:
     y: 0.25
     width: 0.2
     height: 0.5
-  _speed: 3
+  _speed: 10
   _teleportDistance: 10
   _teleportSpeed: 10
   _camera: {fileID: 963194227}
