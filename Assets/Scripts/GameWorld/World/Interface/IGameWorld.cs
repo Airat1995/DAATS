@@ -10,5 +10,7 @@ namespace DAATS.Initializer.GameWorld.World.Interface
         void Update(float deltaTime);
 
         void FinishLevel();
+
+		void LoseLevel();
     }
 }

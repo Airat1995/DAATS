@@ -1,4 +1,4 @@
-﻿using DAATS.Component.Interface;
+using DAATS.Component.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
 
@@ -10,6 +10,7 @@ namespace DAATS.Initializer.System
         private readonly IPlayer _currentPlayer;
         private readonly CharacterController _playerCharacter;        
         private readonly float _speed;
+		private readonly float _reachDistance;
 
         private bool _blocked = false;
         
@@ -17,13 +18,14 @@ namespace DAATS.Initializer.System
         private Vector3 _endPosition;
         private Vector3 _currentPosition;
 
-        public bool MoveBlocked => _blocked;
+        public bool MoveBlocked => _blocked;		
+		public Vector3 CurrentPosition => _currentPosition;
         public Vector3 MoveVector
         {
             get
-            {               
+            { 
                 if(_blocked)
-                    return  (_endPosition - _currentPosition).normalized;
+                    return (_endPosition - _currentPosition).normalized;
 
                 return _currentPlayer.Transform.forward;
             }
@@ -35,6 +37,7 @@ namespace DAATS.Initializer.System
             _currentPlayer = currentPlayer;
             _speed = _currentPlayer.Speed;
             _playerCharacter = currentPlayer.CharacterController;
+			_reachDistance = currentPlayer.CharacterController.minMoveDistance * 10;
         }
 
         public void Update(float deltaTime)
@@ -51,20 +54,21 @@ namespace DAATS.Initializer.System
 
         private void Move(Vector3 moveVector)
         {
-            if(moveVector == Vector3.zero)
+			moveVector.y = 0;
+            if(Vector3.Distance(moveVector, Vector3.zero) < _reachDistance)
+			{
+				_blocked = false;
                 return;
+			}
             _playerCharacter.Move(moveVector);
             _currentPosition = _currentPlayer.Transform.position;
             _currentPlayer.Transform.rotation = Quaternion.LookRotation(moveVector);
-
-            if(_endPosition == _currentPosition)
-                _blocked = false;
         }
 
         public void SetFinalPosition(Vector3 endPosition)
         {
             _currentPosition = _currentPlayer.Transform.position;
-            _endPosition = endPosition;
+            _endPosition = new Vector3(endPosition.x, 0, endPosition.z);
         }
 
         public void SetPosition(Vector3 position)

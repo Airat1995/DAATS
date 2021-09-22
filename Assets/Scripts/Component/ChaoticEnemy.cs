@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using DAATS.Component.Interface;
 using UnityEngine;
@@ -13,8 +13,12 @@ namespace DAATS.Initializer.Component
         public float Speed => _speed;
 
         [SerializeField]
-        private int _damage;
-        public int Damage => _damage;
+        private uint _damage;
+        public uint Damage => _damage;
+
+		[SerializeField]
+		private float _hitBounceDistance;
+		public float HitBounceDistance => _hitBounceDistance;
 
         [SerializeField]
         private NavMeshAgent _agent;
@@ -27,21 +31,23 @@ namespace DAATS.Initializer.Component
         public Transform Transform => transform;
         public List<IWaypoint> Waypoints { get; set; }
 
-        private Action<Collision> _onCollide = (collider) => { };
+		
 
-        public void SubscribeOnCollide(Action<Collision> onCollide)
+		private Action<Collider, IEnemy> _onCollide = (collider, enemy) => { };
+
+        public void SubscribeOnCollide(Action<Collider, IEnemy> onCollide)
         {
             _onCollide += onCollide;
         }
 
-        public void UnsubscribeOnCollide(Action<Collision> onCollide)
+        public void UnsubscribeOnCollide(Action<Collider, IEnemy> onCollide)
         {
             _onCollide -= onCollide;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider collider)
         {
-            _onCollide.Invoke(collision);
+            _onCollide.Invoke(collider, this);
         }
 
     }

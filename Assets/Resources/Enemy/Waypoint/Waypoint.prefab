@@ -133,4 +133,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _damage: 1
+  _hitBounceDistance: 10
   _renderer: {fileID: 4691239026511194537}

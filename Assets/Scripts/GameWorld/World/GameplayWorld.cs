@@ -56,14 +56,26 @@ namespace DAATS.Initializer.GameWorld.World
         }
 
         public async void FinishLevel()
-        {
-            await _setUserProgress.WriteCompletedLevel(_currentLevel, new LevelProgress(){LeftTime = 0, StarCount = 0});
-            _windowManager.CloseAllWindows();
-            _levelCreator.DestroyLevel();
-            _updatableSystems.Clear();
-            _callableSystems.Clear();
-            CreateLastLevel();
-        }
+		{
+			await _setUserProgress.WriteCompletedLevel(_currentLevel, new LevelProgress() { LeftTime = 0, StarCount = 0 });
+			ClearWorld();
+			CreateLastLevel();
+		}
+
+		public void LoseLevel()
+		{
+			ClearWorld();
+			CreateLastLevel();
+		}
+
+		
+		private void ClearWorld()
+		{
+			_windowManager.CloseAllWindows();
+			_levelCreator.DestroyLevel();
+			_updatableSystems.Clear();
+			_callableSystems.Clear();
+		}
         
         private void CreateLastLevel()
         {
@@ -106,6 +118,17 @@ namespace DAATS.Initializer.GameWorld.World
                 _levelCreator.SlidingTiles,
                 _levelCreator.Walls);
 
+			var allEnemies = new List<IEnemy>();
+			allEnemies.AddRange(_levelCreator.WaypointEnemies);
+			allEnemies.AddRange(_levelCreator.ChaoticEnemies);
+			allEnemies.AddRange(_levelCreator.StalkerEnemies);
+			
+			var playerHealthSystem = new PlayerHealthSystem(_levelCreator.Player, this);
+			_callableSystems.Add(playerHealthSystem);
+			
+			var enemyHitSystem = new EnemyHitSystem(allEnemies, playerMove, _levelCreator.Player, playerHealthSystem);
+			_callableSystems.Add(enemyHitSystem);
+
             _callableSystems.Add(requiredCollectionSystem);
             _callableSystems.Add(levelFinishSystem);
             _callableSystems.Add(slidingSystem);
@@ -113,8 +136,7 @@ namespace DAATS.Initializer.GameWorld.World
             if(_levelCreator.HiddenVision)
             {
                 _windowManager.OpenWindow<IFogFollowWindowController>();
-            }
-            
+            }            
         }
 
         private void CreateStalkerEnemies()

@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 1
-  _meshAgent: {fileID: -1669456749264677428}
   _speed: 0.69
+  _hitBounceDistance: 10
+  _meshAgent: {fileID: -1669456749264677428}
   _renderer: {fileID: 4691239026511194537}
