@@ -12,7 +12,6 @@ namespace DAATS.Initializer.System
         private readonly IWaypointEnemy _enemy;
         
         private int _moveIndex = 0;
-        private bool _moveBack = false;        
         private bool _moveFinished = true;
         private Vector3 _endPosition;
         private Vector3 _currentPosition;
@@ -72,14 +71,8 @@ namespace DAATS.Initializer.System
             _moveFinished = false;
 
             if (_moveIndex == _enemy.Waypoints.Count - 1)
-                _moveBack = true;
-            else if (_moveIndex == 0 && _moveBack)
-                _moveBack = false;
-
-            if (_moveBack)
-                --_moveIndex;
-            else
-                ++_moveIndex;
+                _moveIndex = -1;
+            ++_moveIndex;
         }
 
         private void Stop()
