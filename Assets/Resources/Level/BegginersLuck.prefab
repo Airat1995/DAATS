@@ -11,15 +11,7 @@ GameObject:
   - component: {fileID: 6914088676694373087}
   - component: {fileID: 6185579048983062592}
   m_Layer: 0
-<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
-<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
   m_Name: BegginersLuck
-=======
-  m_Name: begginers luck
->>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
-=======
-  m_Name: begginers luck
->>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -215,16 +207,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelInfo:
-<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
-<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
     LevelNum: 0
     Name: BegginersLuck
-=======
-=======
->>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
-    LevelNum: 3
-    Name: 'begginers luck '
->>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
   _hiddenVision: 0
   _cameraOffset: 32
   _playerSpawnPoint: {fileID: 5757501776341149685}
@@ -9608,16 +9592,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_NavMeshData
       value: 
-<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
-<<<<<<< HEAD:Assets/Resources/Level/BegginersLuck.prefab
       objectReference: {fileID: 23800000, guid: 0ab277cf3b660144493d7a3e61eb4683,
         type: 2}
-=======
-      objectReference: {fileID: 0}
->>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
-=======
-      objectReference: {fileID: 0}
->>>>>>> ac6a4b0b39137c05794b22f08cf2fa6086373ac8:Assets/Resources/Level/begginers luck.prefab
     - target: {fileID: 5046584657951152960, guid: 317ed9c33752d234fa7807f84c37c2d5,
         type: 3}
       propertyPath: m_RootOrder
