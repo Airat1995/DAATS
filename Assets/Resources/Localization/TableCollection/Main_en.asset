@@ -19,7 +19,15 @@ MonoBehaviour:
     m_Items: []
   m_TableData:
   - m_Id: 438723018752
-    m_Localized: Start
+    m_Localized: Start11111
+    m_Metadata:
+      m_Items: []
+  - m_Id: 39143091406241792
+    m_Localized: "\u0421\u0422\u041E\u041F!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 40964668825403392
+    m_Localized: Airat
     m_Metadata:
       m_Items: []
   references:

@@ -12,6 +12,8 @@ using DAATS.System;
 using DAATS.System.Interface;
 using DAATS.UserData;
 using DAATS.UserData.Interface;
+using DialogueEditor;
+using UnityEngine;
 using Zenject;
 
 namespace DAATS.Initializer.GameWorld.World
@@ -30,6 +32,7 @@ namespace DAATS.Initializer.GameWorld.World
         private IResourceManager _resourceManager => _container.Resolve<IResourceManager>();
         private ILevelCollection _levelCollection => _container.Resolve<ILevelCollection>();
         private ICameraComponent _camera => _container.Resolve<ICameraComponent>();
+        private ConversationManager _conversationManager => _container.Resolve<ConversationManager>();
 
         public GameplayWorld(DiContainer container)
         {
@@ -56,11 +59,30 @@ namespace DAATS.Initializer.GameWorld.World
         }
 
         public async void FinishLevel()
-		{
+		{            
 			await _setUserProgress.WriteCompletedLevel(_currentLevel, new LevelProgress() { LeftTime = 0, StarCount = 0 });
+            if(_levelCreator.Conversation != null)
+            {
+                _conversationManager.StartConversation(_levelCreator.Conversation);
+                ConversationManager.OnConversationEnded += OnConversationEnded;
+            }
+            else
+            {
+                LoadNextLevel();
+            }
+		}
+
+        private void OnConversationEnded()
+        {
+            ConversationManager.OnConversationEnded -= OnConversationEnded;
+            LoadNextLevel();
+        }
+
+        private void LoadNextLevel()
+        {
 			ClearWorld();
 			CreateLastLevel();
-		}
+        }
 
 		public void LoseLevel()
 		{
@@ -136,7 +158,7 @@ namespace DAATS.Initializer.GameWorld.World
             if(_levelCreator.HiddenVision)
             {
                 _windowManager.OpenWindow<IFogFollowWindowController>();
-            }            
+            }
         }
 
         private void CreateStalkerEnemies()

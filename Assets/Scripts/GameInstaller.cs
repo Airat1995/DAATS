@@ -12,6 +12,7 @@ using DAATS.Initializer.System.Window.Fabric;
 using DAATS.Initializer.System.Window.Fabric.Interface;
 using DAATS.UserData;
 using DAATS.UserData.Interface;
+using DialogueEditor;
 using UnityEngine;
 using Zenject;
 
@@ -27,6 +28,9 @@ namespace DAATS.Initializer
 
         [SerializeField]
         private CameraComponent _cameraComponent;
+
+        [SerializeField]
+        private ConversationManager _conversationManager;
 
         public override void InstallBindings()
         {
@@ -65,6 +69,10 @@ namespace DAATS.Initializer
 
             Container.Bind<ICameraComponent>()
                 .FromInstance(_cameraComponent)
+                .AsSingle();
+
+            Container.Bind<ConversationManager>()
+                .FromInstance(_conversationManager)
                 .AsSingle();
         }
     }

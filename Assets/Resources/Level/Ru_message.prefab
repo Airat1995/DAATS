@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3daa536e1ea052d4e8ade414e193d39c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _conversation: {fileID: 0}
   _levelInfo:
     LevelNum: 0
     Name: Ru_message

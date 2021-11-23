@@ -4,6 +4,7 @@ using DAATS.Component.Interface;
 using DAATS.Initializer.Level.Creator.Interface;
 using DAATS.Initializer.Manager.Resource.Interface;
 using DAATS.UserData;
+using DialogueEditor;
 using UnityEngine;
 
 namespace DAATS.Initializer.Level.Creator
@@ -28,6 +29,7 @@ namespace DAATS.Initializer.Level.Creator
         public List<IWall> Walls { get; private set; }
         public bool HiddenVision{get; private set; }
         public float CameraOffset { get; private set; }
+        public NPCConversation Conversation { get; private set; }
 
         public LevelCreator(LevelData levelData, Transform levelSpawnTransform, IResourceManager resourceManager)
         {
@@ -50,6 +52,7 @@ namespace DAATS.Initializer.Level.Creator
             SlidingTiles = _spawnedLevelDescriptor.SlidingTiles;
             Walls = _spawnedLevelDescriptor.Walls;
             CameraOffset = _spawnedLevelDescriptor.CameraOffset;
+            Conversation = _spawnedLevelDescriptor.Conversation;
         }
 
         public void DestroyLevel()

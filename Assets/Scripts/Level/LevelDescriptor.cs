@@ -5,7 +5,7 @@ using DAATS.Component.Interface;
 using DAATS.Initializer.Component;
 using DAATS.UserData;
 using UnityEngine;
-using System;
+using DialogueEditor;
 
 #if UNITY_EDITOR
 using UnityEditor;
@@ -21,6 +21,10 @@ namespace DAATS.Initializer.Level
         private static readonly string WaypointEnemySpawnPointTag = "WaypointEnemySpawnPoint";
         private static readonly string ChaoticEnemySpawnPointTag = "ChaoticEnemySpawnPoint";
         private static readonly string StalkerEnemySpawnPointTag = "StalkerEnemySpawnPoint";
+
+        [SerializeField]
+        private NPCConversation _conversation;
+        public NPCConversation Conversation => _conversation;
 
         [SerializeField]
         private LevelData _levelInfo;
