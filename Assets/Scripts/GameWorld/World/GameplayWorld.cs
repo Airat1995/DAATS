@@ -42,11 +42,17 @@ namespace DAATS.Initializer.GameWorld.World
 
         public void AddCallableSystem(ICallableSystem addSystem)
         {
+            bool isAlreadyHaveBind = _container.HasBinding(addSystem.GetType());
+            if(!isAlreadyHaveBind)    
+                _container.Bind(addSystem.GetType()).FromInstance(addSystem);
             _callableSystems.Add(addSystem);
         }
 
         public void AddUpdatableSystem(IUpdatableSystem addSystem)
         {
+            bool isAlreadyHaveBind = _container.HasBinding(addSystem.GetType());
+            if(!isAlreadyHaveBind)            
+                _container.Bind(addSystem.GetType()).FromInstance(addSystem);
             _updatableSystems.Add(addSystem);
         }
 
@@ -97,40 +103,46 @@ namespace DAATS.Initializer.GameWorld.World
 			_levelCreator.DestroyLevel();
 			_updatableSystems.Clear();
 			_callableSystems.Clear();
+            foreach (var updatableSystem in _updatableSystems)
+            {
+                _container.Unbind(updatableSystem.GetType());
+            }
+            foreach (var callableSystem in _callableSystems)
+            {
+                _container.Unbind(callableSystem.GetType());
+            }
 		}
         
         private void CreateLastLevel()
         {
             var lastLevel = _levelCollection.GetNextLevelData(_userProgressData.LastBeatenLevel());
             _currentLevel = lastLevel;
-            CreateLevel(lastLevel);
-            _updatableSystems.Add(_windowManager);
+            CreateLevel(lastLevel);            
+            AddUpdatableSystem(_windowManager);
         }
 
         private void CreateLevel(LevelData createLevel)
         {
-            _windowManager.OpenWindow<IGameWindowController>();
-
             _levelCreator = new LevelCreator(createLevel,
                 null, _resourceManager);
             _levelCreator.SpawnLevel();
             _container.Rebind<IPlayer>().FromInstance(_levelCreator.Player);
 
             var inputSystem = new InputSystem();
-           _updatableSystems.Add(inputSystem);
+           AddUpdatableSystem(inputSystem);           
 
             var playerMove = new PlayerMovementSystem(inputSystem, _levelCreator.Player);
-           _updatableSystems.Add(playerMove);
+           AddUpdatableSystem(playerMove);
 
             CreateWaypointEnemies();
             CreateChaoticEnemies();
             CreateStalkerEnemies();
 
             var portalSystem = new PortalSystem(_levelCreator.Player, playerMove, _levelCreator.Portals);
-             _callableSystems.Add(portalSystem);
+             AddCallableSystem(portalSystem);
             
             var cameraFollow = new CameraFollowSystem(_camera, _levelCreator.Player, _levelCreator.CameraOffset);
-            _updatableSystems.Add(cameraFollow);
+            AddUpdatableSystem(cameraFollow);
 
             var requiredCollectionSystem =
                 new RequiredCollectionSystem(new Queue<IRequiredCollectable>(_levelCreator.RequiredCollectables),
@@ -146,15 +158,17 @@ namespace DAATS.Initializer.GameWorld.World
 			allEnemies.AddRange(_levelCreator.StalkerEnemies);
 			
 			var playerHealthSystem = new PlayerHealthSystem(_levelCreator.Player, this);
-			_callableSystems.Add(playerHealthSystem);
+			AddCallableSystem(playerHealthSystem);
 			
 			var enemyHitSystem = new EnemyHitSystem(allEnemies, playerMove, _levelCreator.Player, playerHealthSystem);
-			_callableSystems.Add(enemyHitSystem);
+			AddCallableSystem(enemyHitSystem);
+            AddCallableSystem(enemyHitSystem);
 
-            _callableSystems.Add(requiredCollectionSystem);
-            _callableSystems.Add(levelFinishSystem);
-            _callableSystems.Add(slidingSystem);
+            AddCallableSystem(requiredCollectionSystem);
+            AddCallableSystem(levelFinishSystem);
+            AddCallableSystem(slidingSystem);
 
+            _windowManager.OpenWindow<IGameWindowController>();
             if(_levelCreator.HiddenVision)
             {
                 _windowManager.OpenWindow<IFogFollowWindowController>();
@@ -165,7 +179,7 @@ namespace DAATS.Initializer.GameWorld.World
         {
             foreach (var stalkerEnemy in _levelCreator.StalkerEnemies)
             {
-                _updatableSystems.Add(new StalkerEnemyMovementSystem(stalkerEnemy, _levelCreator.Player));
+                AddUpdatableSystem(new StalkerEnemyMovementSystem(stalkerEnemy, _levelCreator.Player));
             }
         }
 
@@ -173,7 +187,7 @@ namespace DAATS.Initializer.GameWorld.World
         {
             foreach (var chaoticEnemy in _levelCreator.ChaoticEnemies)
             {
-                _updatableSystems.Add(new ChaoticEnemyMovementSystem(chaoticEnemy));
+                AddUpdatableSystem(new ChaoticEnemyMovementSystem(chaoticEnemy));
             }
         }
 
@@ -181,7 +195,7 @@ namespace DAATS.Initializer.GameWorld.World
         {
             foreach (var waypointEnemy in _levelCreator.WaypointEnemies)
             {
-                _updatableSystems.Add(new WaypointMovementSystem(waypointEnemy));
+                AddUpdatableSystem(new WaypointMovementSystem(waypointEnemy));
             }
         }
     }

@@ -1,5 +1,7 @@
 ﻿using DAATS.Initializer.System.Window.GameWindow.Interface;
 using DAATS.Initializer.System.Window.SettingsWindow.Interface;
+using DAATS.System;
+using DAATS.System.Interface;
 using Zenject;
 
 namespace DAATS.Initializer.System.Window.GameWindow
@@ -11,10 +13,20 @@ namespace DAATS.Initializer.System.Window.GameWindow
 
         private WindowManager _windowManager => _container.Resolve<WindowManager>();
 
+        private IPlayerHealthSystem _playerHealthSystem => _container.Resolve<PlayerHealthSystem>();
+
         public GameWindowPresenter(IGameWindowView gameWindowView, DiContainer container)
         {
             _gameWindowView = gameWindowView;
+            _gameWindowView.SetEventReceiver(this);
             _container = container;
+            _playerHealthSystem.SubscribeOnHealthChange(OnHealthChange);
+        }
+
+        private void OnHealthChange(uint currentHealth, uint maxHealth)
+        {
+            float leftPercent = maxHealth/currentHealth;
+            _gameWindowView.UpdateHealth(leftPercent);
         }
 
         public void SetActive(bool enable)

@@ -16,6 +16,7 @@ namespace DialogueEditor
 
 
         SerializedProperty LocalizedStringTable;
+        SerializedProperty BlockPanel;
         SerializedProperty BackgroundImageProperty;
         SerializedProperty BackgroundImageSlicedProperty;
         SerializedProperty OptionImageProperty;
@@ -27,6 +28,7 @@ namespace DialogueEditor
         private void OnEnable()
         {
             LocalizedStringTable = serializedObject.FindProperty("_localizedStringTable");
+            BlockPanel = serializedObject.FindProperty("BlockPanel");
             BackgroundImageProperty = serializedObject.FindProperty("BackgroundImage");
             BackgroundImageSlicedProperty = serializedObject.FindProperty("BackgroundImageSliced");
             OptionImageProperty = serializedObject.FindProperty("OptionImage");
@@ -49,9 +51,14 @@ namespace DialogueEditor
             GUILayout.Space(BOX_HEIGHT + OPTION_BUFFER + OPTION_HEIGHT);
             EditorGUILayout.EndVertical();
 
-            // Dialogue Event
+            // Localization table
             GUILayout.Label("Dialogue Localization Event", EditorStyles.boldLabel);
             EditorGUILayout.PropertyField(LocalizedStringTable);
+            EditorGUILayout.Space();
+
+            // Block panel
+            GUILayout.Label("Diallogue Blocking Panel", EditorStyles.boldLabel);
+            EditorGUILayout.PropertyField(BlockPanel);
             EditorGUILayout.Space();
 
             // Background image

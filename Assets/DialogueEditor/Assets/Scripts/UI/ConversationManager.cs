@@ -49,6 +49,9 @@ namespace DialogueEditor
         // Base panels
         public RectTransform DialoguePanel;
         public RectTransform OptionsPanel;
+
+        public RectTransform BlockPanel;
+
         // Dialogue UI
         public Image DialogueBackground;
         public Image NpcIcon;
@@ -654,6 +657,7 @@ namespace DialogueEditor
         {
             DialoguePanel.gameObject.SetActive(true);
             OptionsPanel.gameObject.SetActive(true);
+            BlockPanel.gameObject.SetActive(true);
 
             if (BackgroundImage != null)
             {
@@ -672,6 +676,7 @@ namespace DialogueEditor
         {
             DialoguePanel.gameObject.SetActive(false);
             OptionsPanel.gameObject.SetActive(false);
+            BlockPanel.gameObject.SetActive(false);
             SetState(eState.Off);
 #if UNITY_EDITOR
             // Debug.Log("[ConversationManager]: Conversation UI off.");

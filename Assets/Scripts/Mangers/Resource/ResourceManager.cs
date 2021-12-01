@@ -89,6 +89,7 @@ namespace DAATS.Initializer.Manager.Resource
             var windowName = _resourceFolder + "Window/" + typeof(T).Name;
             var window = InstantiateObject<T>(parent, windowName);
             window.gameObject.SetActive(false);
+            window.transform.SetAsFirstSibling();
             _windows.Add(typeof(T), window.gameObject);
             return window;
         }

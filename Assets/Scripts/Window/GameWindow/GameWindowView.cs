@@ -9,8 +9,13 @@ namespace DAATS.Initializer.System.Window.GameWindow
         [SerializeField]
         private Button _pauseButton;
 
+        [SerializeField]
+        private Slider _healthSlider;
+
         public void SetEventReceiver(IGameWindowEventReceiver eventReceiver)
         {
+            _pauseButton.onClick.RemoveAllListeners();
+            _pauseButton.onClick.AddListener(eventReceiver.Pause);
         }
 
         public void Close()
@@ -21,6 +26,11 @@ namespace DAATS.Initializer.System.Window.GameWindow
         public void Open()
         {
             gameObject.SetActive(true);
+        }
+
+        public void UpdateHealth(float leftPercent)
+        {
+            _healthSlider.value = leftPercent;
         }
     }
 }
