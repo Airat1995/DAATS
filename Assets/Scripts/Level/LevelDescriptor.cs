@@ -9,7 +9,6 @@ using DialogueEditor;
 
 #if UNITY_EDITOR
 using UnityEditor;
-using UnityEditor.Experimental.SceneManagement;
 #endif
 
 namespace DAATS.Initializer.Level
@@ -84,7 +83,7 @@ namespace DAATS.Initializer.Level
         [ContextMenu("Fill level info")]
         private void FillLevelInfo()
         {
-            var prefabStage = PrefabStageUtility.GetCurrentPrefabStage();
+            var prefabStage = UnityEditor.SceneManagement.PrefabStageUtility.GetCurrentPrefabStage();
             _exit = prefabStage.FindComponentOfType<Exit>();
             _portal = prefabStage.FindComponentsOfType<Portal>().ToList();
             _walls = prefabStage.FindComponentsOfType<Wall>().ToList();

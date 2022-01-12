@@ -16,6 +16,8 @@ namespace DAATS.Initializer.System
         private Vector3 _endPosition;
         private Vector3 _currentPosition;
         private float _speed;
+
+        private bool _movementStopped = true;
                 
         private Vector3 MoveVector
         {
@@ -37,8 +39,11 @@ namespace DAATS.Initializer.System
 
         public void Update(float deltaTime)
         {
+            if(_movementStopped)
+                return;
             Move(deltaTime);
-            if (!_moveFinished) return;
+            if (!_moveFinished)
+                return;
             SetNewMovePoint(_enemy.Transform.position,
                 _enemy.Waypoints[_moveIndex].Position, _enemy.Speed);
         }
@@ -47,6 +52,17 @@ namespace DAATS.Initializer.System
         {
             _moveTransform.transform.position = position;
             _currentPosition = position;
+        }
+
+        public void UnlockMovement()
+        {
+            _movementStopped = false;
+        }
+
+        public void BlockMovement()
+        {
+            _movementStopped = true;
+            Stop();
         }
 
         private void Move(float deltaTime)

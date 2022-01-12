@@ -7,7 +7,6 @@ namespace DAATS.Component.Interface
         float Speed { get; }
         uint MaxHealth { get; }
 
-        CharacterController CharacterController { get; }
         bool IsSameGameObject(GameObject other);
     }
 }

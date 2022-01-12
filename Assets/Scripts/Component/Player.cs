@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace DAATS.Initializer.Component
 {
-    public class Player : MonoBehaviour, IPlayer, IVisualElement
+    public class Player : MonoBehaviour, IRealPlayer, IVisualElement
     {
         [SerializeField]
         private float _speed;

@@ -10,20 +10,33 @@ namespace DAATS.Initializer.System
         private readonly IChaoticEnemy _enemy;
 
         private IWaypoint _moveWaypoint = default;
+        private bool _blocked = true;
 
         public ChaoticEnemyMovementSystem(IChaoticEnemy enemy)
         {
             _enemy = enemy;
             _enemy.Agent.speed = _enemy.Speed;
         }
-
         public void SetPosition(Vector3 position)
         {
            _enemy.Transform.position = position;
         }
 
+        public void BlockMovement()
+        {
+            _blocked = true;
+        }
+
+
+        public void UnlockMovement()
+        {
+            _blocked = false;
+        }
+
         public void Update(float deltaTime)
         {
+            if(_blocked)
+                return;
             if (_moveWaypoint == null)
             {
                 SetMovepoint();

@@ -31,7 +31,7 @@ namespace DAATS.Initializer.System
             }
         }
 
-        public PlayerMovementSystem(IInputSystem inputSystem, IPlayer currentPlayer)
+        public PlayerMovementSystem(IInputSystem inputSystem, IRealPlayer currentPlayer)
         {
             _inputSystem = inputSystem;
             _currentPlayer = currentPlayer;
@@ -45,11 +45,6 @@ namespace DAATS.Initializer.System
             var inputVector = _inputSystem.InputData;
             var movementVector = !_blocked ? new Vector3(inputVector.x, 0, inputVector.y) : MoveVector;
             Move(movementVector * _speed * deltaTime);
-        }
-
-        public void BlockMove(bool block)
-        {
-            _blocked = block;
         }
 
         private void Move(Vector3 moveVector)
@@ -78,6 +73,16 @@ namespace DAATS.Initializer.System
             _currentPosition = position;
             _currentPlayer.Transform.position = position;
             _playerCharacter.enabled = true;
+        }
+
+        public void UnlockMovement()
+        {
+            _blocked = false;
+        }
+
+        public void BlockMovement()
+        {
+            _blocked = true;
         }
     }
 }

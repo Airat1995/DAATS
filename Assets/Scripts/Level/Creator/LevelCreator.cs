@@ -16,7 +16,7 @@ namespace DAATS.Initializer.Level.Creator
         private readonly IResourceManager _resourceManager;        
         private LevelDescriptor _spawnedLevelDescriptor;
 
-        public IPlayer Player { get; private set; }
+        public IRealPlayer Player { get; private set; }
 
         public List<IRequiredCollectable> RequiredCollectables { get; private set; }
         public List<IPortal> Portals {get; private set; }

@@ -37,6 +37,7 @@ namespace DialogueEditor
         // Drawn by custom inspector
         public bool ScrollText;
         public float ScrollSpeed = 1;
+        public float TextSpeed = 1500.0f;
         public Sprite BackgroundImage;
         public bool BackgroundImageSliced;
         public Sprite OptionImage;
@@ -357,8 +358,7 @@ namespace DialogueEditor
 
         private void ScrollingText_Update()
         {
-            const float charactersPerSecond = 1500;
-            float timePerChar = (60.0f / charactersPerSecond);
+            float timePerChar = (60.0f / TextSpeed);
             timePerChar *= ScrollSpeed;
 
             m_elapsedScrollTime += Time.deltaTime;
@@ -672,7 +672,7 @@ namespace DialogueEditor
             NpcIcon.sprite = BlankSprite;
         }
 
-        private void TurnOffUI()
+        public void TurnOffUI()
         {
             DialoguePanel.gameObject.SetActive(false);
             OptionsPanel.gameObject.SetActive(false);

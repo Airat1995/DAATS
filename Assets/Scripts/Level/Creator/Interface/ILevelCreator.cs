@@ -5,7 +5,7 @@ namespace DAATS.Initializer.Level.Creator.Interface
 {
     public interface ILevelCreator
     {
-        IPlayer Player { get; }
+        IRealPlayer Player { get; }
         List<IRequiredCollectable> RequiredCollectables { get; }
         IExit Exit { get; }
         List<IPortal> Portals { get; }

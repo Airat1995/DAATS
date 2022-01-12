@@ -52,13 +52,13 @@ namespace DAATS.System
             if (!_player.IsSameGameObject(collider.gameObject)) return;
             var moveVector = !_reverseMove ? _movementSystem.MoveVector : _lastNormal;
             _movementSystem.SetFinalPosition(moveVector * OFFSET);
-            _movementSystem.BlockMove(true);
+            _movementSystem.BlockMovement();
         }
 
         private void OnWallHit(Collider collider, IWall wall)
         {
             if (!_player.IsSameGameObject(collider.gameObject)) return;			
-            _movementSystem.BlockMove(false);
+            _movementSystem.UnlockMovement();
 			if(!_sliding) return;
 
             Physics.Raycast(new Ray(collider.transform.position, collider.transform.forward), out var hitInfo, 10.0f);

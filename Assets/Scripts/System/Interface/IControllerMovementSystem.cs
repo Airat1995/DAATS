@@ -9,6 +9,5 @@ namespace DAATS.System.Interface
         bool MoveBlocked { get; }		
 
 		void SetFinalPosition(Vector3 endPosition);     
-        void BlockMove(bool block);
     }
 }

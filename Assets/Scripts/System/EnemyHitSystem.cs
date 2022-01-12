@@ -31,9 +31,9 @@ namespace DAATS.System
 				return;
 			
 			_healthSystem.DealDamage(enemy);
-			_playerMovementSystem.BlockMove(false);
+			_playerMovementSystem.BlockMovement();
 			_playerMovementSystem.SetFinalPosition(_playerMovementSystem.MoveVector * -1 * enemy.HitBounceDistance);
-			_playerMovementSystem.BlockMove(true);
+			_playerMovementSystem.UnlockMovement();
         }
     }
 }
