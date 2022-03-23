@@ -18,16 +18,19 @@ namespace DAATS.Initializer.Level.Creator
 
         public IPlayer Player { get; private set; }
 
-        public List<IRequiredCollectable> RequiredCollectables { get; private set; }
-        public List<IPortal> Portals {get; private set; }
+        public IRequiredCollectable[] RequiredCollectables { get; private set; }
+        public IPortal[] Portals {get; private set; }
         
         public IExit Exit => _spawnedLevelDescriptor.Exit;
-        public List<IStalkerEnemy> StalkerEnemies { get; private set; }
-        public List<IChaoticEnemy> ChaoticEnemies { get; private set; }
-        public List<IWaypointEnemy> WaypointEnemies { get; private set; }
-        public List<ISlidingTile> SlidingTiles { get; private set; }
-        public List<IWall> Walls { get; private set; }
-        public bool HiddenVision{get; private set; }
+        public IStalkerEnemy[] StalkerEnemies { get; private set; }
+        public IChaoticEnemy[] ChaoticEnemies { get; private set; }
+        public IWaypointEnemy[] WaypointEnemies { get; private set; }
+        public ISlidingTile[] SlidingTiles { get; private set; }
+        public IWall[] Walls { get; private set; }        
+        public IEnemyActivatorTile[] ActivatorTiles {get; private set;}
+        public IEnemyDeactivatorTile[] DeactivatorTiles { get; private set; }
+
+        public bool HiddenVision { get; private set; }
         public float CameraOffset { get; private set; }
         public NPCConversation Conversation { get; private set; }
 
@@ -42,7 +45,7 @@ namespace DAATS.Initializer.Level.Creator
         {
             _spawnedLevelDescriptor = _resourceManager.GetLevel(_levelData, _levelSpawnTransform);
             Player = _resourceManager.GetPlayerObject(_spawnedLevelDescriptor.PlayerSpawnTransform);
-            RequiredCollectables = new List<IRequiredCollectable>(_spawnedLevelDescriptor.RequiredCollectables);
+            RequiredCollectables = _spawnedLevelDescriptor.RequiredCollectables;
 
             StalkerEnemies = FillStalkerEnemies();
             ChaoticEnemies = FillChaoticEnemies();
@@ -53,6 +56,8 @@ namespace DAATS.Initializer.Level.Creator
             Walls = _spawnedLevelDescriptor.Walls;
             CameraOffset = _spawnedLevelDescriptor.CameraOffset;
             Conversation = _spawnedLevelDescriptor.Conversation;
+            ActivatorTiles = _spawnedLevelDescriptor.ActivatorTiles;
+            DeactivatorTiles = _spawnedLevelDescriptor.DeactivatorTiles;
         }
 
         public void DestroyLevel()
@@ -67,27 +72,21 @@ namespace DAATS.Initializer.Level.Creator
             _resourceManager.UnloadLevel(_spawnedLevelDescriptor);
         }
 
-        private List<IWaypointEnemy> FillWaypointEnemies()
+        private IWaypointEnemy[] FillWaypointEnemies()
         {
-            var waypointEnemies = new List<IWaypointEnemy>(_spawnedLevelDescriptor.WaypointsSpawnPoints.Count);
-            waypointEnemies.AddRange(_spawnedLevelDescriptor.WaypointsSpawnPoints.Select(stalkerEnemySpawnTransform => _resourceManager.GetWaypointEnemyObject(stalkerEnemySpawnTransform)));
-
+            var waypointEnemies = _spawnedLevelDescriptor.WaypointsSpawnPoints.Select(stalkerEnemySpawnTransform => _resourceManager.GetWaypointEnemyObject(stalkerEnemySpawnTransform)).ToArray();
             return waypointEnemies;
         }
 
-        private List<IChaoticEnemy> FillChaoticEnemies()
+        private IChaoticEnemy[] FillChaoticEnemies()
         {
-            var chaoticEnemies = new List<IChaoticEnemy>(_spawnedLevelDescriptor.ChaoticEnemySpawnPoints.Count);
-            chaoticEnemies.AddRange(_spawnedLevelDescriptor.ChaoticEnemySpawnPoints.Select(stalkerEnemySpawnTransform => _resourceManager.GetChaoticEnemyObject(stalkerEnemySpawnTransform)));
-
+            var chaoticEnemies = _spawnedLevelDescriptor.ChaoticEnemySpawnPoints.Select(stalkerEnemySpawnTransform => _resourceManager.GetChaoticEnemyObject(stalkerEnemySpawnTransform)).ToArray();
             return chaoticEnemies;
         }
 
-        private List<IStalkerEnemy> FillStalkerEnemies()
+        private IStalkerEnemy[] FillStalkerEnemies()
         {
-            var stalkerEnemies = new List<IStalkerEnemy>(_spawnedLevelDescriptor.StalkerEnemySpawnTransforms.Count);
-            stalkerEnemies.AddRange(_spawnedLevelDescriptor.StalkerEnemySpawnTransforms.Select(stalkerEnemySpawnTransform => _resourceManager.GetStalkerEnemyObject(stalkerEnemySpawnTransform)));
-
+            var stalkerEnemies = _spawnedLevelDescriptor.StalkerEnemySpawnPoints.Select(stalkerEnemySpawnTransform => _resourceManager.GetStalkerEnemyObject(stalkerEnemySpawnTransform)).ToArray();
             return stalkerEnemies;
         }
     }

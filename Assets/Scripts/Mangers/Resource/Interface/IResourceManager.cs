@@ -12,9 +12,9 @@ namespace DAATS.Initializer.Manager.Resource.Interface
         void UnloadLevel(LevelDescriptor level);
         
         Player GetPlayerObject(ISpawnPoint spawnPoint);
-        StalkerEnemy GetStalkerEnemyObject(ISpawnPoint spawnPoint);
-        ChaoticEnemy GetChaoticEnemyObject(IWaypointsSpawnPoint spawnPoint);
-        WaypointEnemy GetWaypointEnemyObject(IWaypointsSpawnPoint spawnPoint);
+        StalkerEnemy GetStalkerEnemyObject(IEnemySpawnPoint spawnPoint);
+        ChaoticEnemy GetChaoticEnemyObject(IWaypointsEnemySpawnPoint spawnPoint);
+        WaypointEnemy GetWaypointEnemyObject(IWaypointsEnemySpawnPoint spawnPoint);
 
         void UnloadPlayer(IPlayer player);
         void UnloadEnemy(IEnemy enemy);

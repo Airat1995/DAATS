@@ -13,7 +13,6 @@ using DAATS.System.Interface;
 using DAATS.UserData;
 using DAATS.UserData.Interface;
 using DialogueEditor;
-using UnityEngine;
 using Zenject;
 
 namespace DAATS.Initializer.GameWorld.World
@@ -167,6 +166,9 @@ namespace DAATS.Initializer.GameWorld.World
             AddCallableSystem(requiredCollectionSystem);
             AddCallableSystem(levelFinishSystem);
             AddCallableSystem(slidingSystem);
+
+            AddCallableSystem(new EnemyActivatorTileSystem(_levelCreator.Player, _levelCreator.ActivatorTiles));
+            AddCallableSystem(new EnemyDeactivatorTileSystem(_levelCreator.Player, _levelCreator.DeactivatorTiles));
 
             _windowManager.OpenWindow<IGameWindowController>();
             if(_levelCreator.HiddenVision)

@@ -1,6 +1,6 @@
 ﻿namespace DAATS.Component.Interface
 {
-    public interface ISlidingTile : ISpecialTile
+    public interface ISlidingTile : ISpecialTile<ISlidingTile>
     {
     }
 }

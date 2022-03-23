@@ -25,7 +25,9 @@ namespace DAATS.Initializer.System.Window.GameWindow
 
         private void OnHealthChange(uint currentHealth, uint maxHealth)
         {
-            float leftPercent = maxHealth/currentHealth;
+            float leftPercent = 0;
+            if (currentHealth != 0)            
+                leftPercent = maxHealth/currentHealth;            
             _gameWindowView.UpdateHealth(leftPercent);
         }
 

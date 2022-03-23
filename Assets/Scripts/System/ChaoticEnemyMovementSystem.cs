@@ -10,11 +10,20 @@ namespace DAATS.Initializer.System
         private readonly IChaoticEnemy _enemy;
 
         private IWaypoint _moveWaypoint = default;
+        private bool _enabled = false;
 
         public ChaoticEnemyMovementSystem(IChaoticEnemy enemy)
         {
             _enemy = enemy;
             _enemy.Agent.speed = _enemy.Speed;
+            _enabled = _enemy.Enalbed;
+            _enemy.SubscribeOnEnableStateChanges(OnStateChanged);
+        }
+
+        private void OnStateChanged(bool newState)
+        {
+            _enemy.Agent.isStopped = newState;
+            _enabled = newState;
         }
 
         public void SetPosition(Vector3 position)
@@ -24,6 +33,7 @@ namespace DAATS.Initializer.System
 
         public void Update(float deltaTime)
         {
+            if (!_enabled) return;
             if (_moveWaypoint == null)
             {
                 SetMovepoint();

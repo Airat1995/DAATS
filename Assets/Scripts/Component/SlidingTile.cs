@@ -2,14 +2,14 @@
 using DAATS.Component.Interface;
 using UnityEngine;
 
-namespace DAATS.Component
+namespace DAATS.Initializer.Component
 {
     [RequireComponent(typeof(Collider))]
     public class SlidingTile : MonoBehaviour, ISlidingTile, IVisualElement
     {
-        private Action<Collider, ISpecialTile> _onTileEnterAction = (collider, tile) => { };
-        private Action<Collider, ISpecialTile> _onTileUpdateAction = (collider, tile) => { };
-        private Action<Collider, ISpecialTile> _onTileExitAction = (collider, tile) => { };
+        private Action<Collider, ISlidingTile> _onTileEnterAction = (collider, tile) => { };
+        private Action<Collider, ISlidingTile> _onTileUpdateAction = (collider, tile) => { };
+        private Action<Collider, ISlidingTile> _onTileExitAction = (collider, tile) => { };
 
         [SerializeField]
         private MeshRenderer _renderer;
@@ -17,32 +17,32 @@ namespace DAATS.Component
         public Material Material => _renderer.material;
 
 
-        public void SubscribeOnTileEnter(Action<Collider, ISpecialTile> onTileEnter)
+        public void SubscribeOnTileEnter(Action<Collider, ISlidingTile> onTileEnter)
         {
             _onTileEnterAction += onTileEnter;
         }
 
-        public void SubscribeOnTileUpdate(Action<Collider, ISpecialTile> onTileUpdate)
+        public void SubscribeOnTileUpdate(Action<Collider, ISlidingTile> onTileUpdate)
         {
             _onTileUpdateAction += onTileUpdate;
         }
 
-        public void SubscribeOnTileExit(Action<Collider, ISpecialTile> onTileExit)
+        public void SubscribeOnTileExit(Action<Collider, ISlidingTile> onTileExit)
         {
             _onTileExitAction += onTileExit;
         }
 
-        public void UnsubscribeOnTileEnter(Action<Collider, ISpecialTile> onTileEnter)
+        public void UnsubscribeOnTileEnter(Action<Collider, ISlidingTile> onTileEnter)
         {
             _onTileEnterAction -= onTileEnter;
         }
 
-        public void UnsubscribeOnTileUpdate(Action<Collider, ISpecialTile> onTileUpdate)
+        public void UnsubscribeOnTileUpdate(Action<Collider, ISlidingTile> onTileUpdate)
         {
             _onTileUpdateAction -= onTileUpdate;
         }
 
-        public void UnsubscribeOnTileExit(Action<Collider, ISpecialTile> onTileExit)
+        public void UnsubscribeOnTileExit(Action<Collider, ISlidingTile> onTileExit)
         {
             _onTileExitAction -= onTileExit;
         }

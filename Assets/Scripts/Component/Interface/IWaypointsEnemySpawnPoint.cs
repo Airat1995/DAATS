@@ -2,7 +2,7 @@
 
 namespace DAATS.Component.Interface
 {
-    public interface IWaypointsSpawnPoint : ISpawnPoint
+    public interface IWaypointsEnemySpawnPoint : IEnemySpawnPoint
     {
         List<IWaypoint> Waypoints { get; }
     }

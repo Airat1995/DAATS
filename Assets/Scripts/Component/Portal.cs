@@ -3,7 +3,7 @@ using DAATS.System.Interface;
 using System;
 using UnityEngine;
 
-namespace DAATS.Component
+namespace DAATS.Initializer.Component
 {
     [RequireComponent(typeof(Collider))]
     class Portal : MonoBehaviour, IPortal

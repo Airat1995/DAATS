@@ -1,4 +1,5 @@
-﻿using DAATS.Component.Interface;
+﻿using System;
+using DAATS.Component.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
 
@@ -11,11 +12,13 @@ namespace DAATS.Initializer.System
         private readonly Transform _moveTransform;
         private readonly IWaypointEnemy _enemy;
         
+        
         private int _moveIndex = 0;
         private bool _moveFinished = true;
         private Vector3 _endPosition;
         private Vector3 _currentPosition;
         private float _speed;
+        private bool _enabled = false;
                 
         private Vector3 MoveVector
         {
@@ -33,10 +36,18 @@ namespace DAATS.Initializer.System
         {
             _enemy = waypointEnemy;
             _moveTransform = waypointEnemy.Transform;
+            _enabled = _enemy.Enalbed;
+            _enemy.SubscribeOnEnableStateChanges(OnStateChanged);
+        }
+
+        private void OnStateChanged(bool newState)
+        {
+            _enabled = newState;
         }
 
         public void Update(float deltaTime)
         {
+            if(!_enabled) return;
             Move(deltaTime);
             if (!_moveFinished) return;
             SetNewMovePoint(_enemy.Transform.position,

@@ -27,36 +27,48 @@ namespace DAATS.Initializer.Manager.Resource
 
         public Player GetPlayerObject(ISpawnPoint spawnPoint)
         {
-            string resPlayerName = _resourceFolder + "Player/player";
+            string resPlayerName = _resourceFolder + "Player/Player";
             var playerGO = InstantiateObject<Player>(spawnPoint.SpawnTransform, resPlayerName);
 
             return playerGO;
         }
 
-        public StalkerEnemy GetStalkerEnemyObject(ISpawnPoint spawnPoint)
+        public StalkerEnemy GetStalkerEnemyObject(IEnemySpawnPoint spawnPoint)
         {
-            string enemyName = _resourceFolder + "Enemy/Stalker/stalker";
+            string enemyName = _resourceFolder + "Enemy/Stalker/Stalker";
             var enemyGO = InstantiateObject<StalkerEnemy>(spawnPoint.SpawnTransform, enemyName);
+            SetEnemyInitialData(spawnPoint, enemyGO);
 
             return enemyGO;
         }
 
-        public ChaoticEnemy GetChaoticEnemyObject(IWaypointsSpawnPoint spawnPoint)
+        public ChaoticEnemy GetChaoticEnemyObject(IWaypointsEnemySpawnPoint spawnPoint)
         {
-            string enemyName = _resourceFolder + "Enemy/Chaotic/chaotic";
+            string enemyName = _resourceFolder + "Enemy/Chaotic/Chaotic";
             var enemyGO = InstantiateObject<ChaoticEnemy>(spawnPoint.SpawnTransform, enemyName);
             enemyGO.Waypoints = spawnPoint.Waypoints;
+            SetEnemyInitialData(spawnPoint, enemyGO);
 
             return enemyGO;
         }
 
-        public WaypointEnemy GetWaypointEnemyObject(IWaypointsSpawnPoint spawnPoint)
+        public WaypointEnemy GetWaypointEnemyObject(IWaypointsEnemySpawnPoint spawnPoint)
         {
-            string enemyName = _resourceFolder + "Enemy/Waypoint/waypoint";
+            string enemyName = _resourceFolder + "Enemy/Waypoint/Waypoint";
             var enemyGO = InstantiateObject<WaypointEnemy>(spawnPoint.SpawnTransform, enemyName);
             enemyGO.Waypoints = spawnPoint.Waypoints;
-
+            
+            SetEnemyInitialData(spawnPoint, enemyGO);
             return enemyGO;
+        }
+
+        private void SetEnemyInitialData(IEnemySpawnPoint spawnPoint, IEnemy enemy)
+        {
+            spawnPoint.AddAssociatedEnemy(enemy);
+            if (spawnPoint.EnabledFromStart)
+                enemy.Enable();
+            else
+                enemy.Disable();
         }
 
         public void UnloadLevel(LevelDescriptor level)

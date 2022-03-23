@@ -1,6 +1,5 @@
 using DAATS.Component.Interface;
 using DAATS.System.Interface;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,7 +15,7 @@ namespace DAATS.System
 		private bool _sliding = false;
         private Vector3 _lastNormal = Vector3.zero;		
 
-        public SlidingTileSystem(IPlayer player, IControllerMovementSystem movementSystem, List<ISlidingTile> slidingTiles, List<IWall> walls)
+        public SlidingTileSystem(IPlayer player, IControllerMovementSystem movementSystem, ISlidingTile[] slidingTiles, IWall[] walls)
         {
             _player = player;
             _movementSystem = movementSystem;
@@ -34,19 +33,19 @@ namespace DAATS.System
             }
         }
 
-		private void OnSlideStart(Collider collider, ISpecialTile slidingTile)
+		private void OnSlideStart(Collider collider, ISlidingTile slidingTile)
 		{
 			_sliding = true;
 		}
 
-		private void OnSlideEnd(Collider collider, ISpecialTile slideTile)
+		private void OnSlideEnd(Collider collider, ISlidingTile slideTile)
         {
 			_sliding = false;
             _lastNormal = Vector3.zero;
             _reverseMove = false;
         }
 
-        private void OnSlide(Collider collider, ISpecialTile slideTile)
+        private void OnSlide(Collider collider, ISlidingTile slideTile)
         {
             if (_movementSystem.MoveBlocked) return;
             if (!_player.IsSameGameObject(collider.gameObject)) return;

@@ -6,21 +6,25 @@ namespace DAATS.Initializer.Level.Creator.Interface
     public interface ILevelCreator
     {
         IPlayer Player { get; }
-        List<IRequiredCollectable> RequiredCollectables { get; }
+        IRequiredCollectable[] RequiredCollectables { get; }
         IExit Exit { get; }
-        List<IPortal> Portals { get; }
+        IPortal[] Portals { get; }
 
         bool HiddenVision { get; }
 
         float CameraOffset { get; }
 
 
-        List<IStalkerEnemy> StalkerEnemies { get; }
-        List<IChaoticEnemy> ChaoticEnemies { get; }
-        List<IWaypointEnemy> WaypointEnemies { get; }
+        IStalkerEnemy[] StalkerEnemies { get; }
+        IChaoticEnemy[] ChaoticEnemies { get; }
+        IWaypointEnemy[] WaypointEnemies { get; }
 
-        List<ISlidingTile> SlidingTiles { get; }
-        List<IWall> Walls { get; }
+        ISlidingTile[] SlidingTiles { get; }
+
+        IEnemyActivatorTile[] ActivatorTiles { get; }
+        IEnemyDeactivatorTile[] DeactivatorTiles { get; }
+
+        IWall[] Walls { get; }
 
         void SpawnLevel();
         void DestroyLevel();

@@ -10,7 +10,7 @@ namespace DAATS.System
         private readonly ITeleportable _teleportable;
         private readonly IControllerMovementSystem _movementSystem;
 
-        public PortalSystem(ITeleportable teleportable, IControllerMovementSystem movementSystem, List<IPortal> portals)
+        public PortalSystem(ITeleportable teleportable, IControllerMovementSystem movementSystem, IPortal[] portals)
         {
             _teleportable = teleportable;
             _movementSystem = movementSystem;
