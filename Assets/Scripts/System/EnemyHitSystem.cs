@@ -3,7 +3,7 @@ using DAATS.Component.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
 
-namespace DAATS.System
+namespace DAATS.Initializer.System
 {
 	public class EnemyHitSystem : IEnemyHitSystem
     {

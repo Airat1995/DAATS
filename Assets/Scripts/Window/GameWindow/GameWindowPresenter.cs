@@ -1,6 +1,5 @@
 ﻿using DAATS.Initializer.System.Window.GameWindow.Interface;
 using DAATS.Initializer.System.Window.SettingsWindow.Interface;
-using DAATS.System;
 using DAATS.System.Interface;
 using Zenject;
 

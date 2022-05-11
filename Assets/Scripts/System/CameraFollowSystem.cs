@@ -2,7 +2,7 @@ using DAATS.Component.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
 
-namespace DAATS.System
+namespace DAATS.Initializer.System
 {
     public class CameraFollowSystem : ICameraFollowSystem
     {
@@ -27,7 +27,7 @@ namespace DAATS.System
             var projectedPosition = _camera.Camera.WorldToViewportPoint(_player.Transform.position);
             if (projectedPosition.x < _boundBox.min.x)
                 playerInBox.x = -1;
-           else if(projectedPosition.x > _boundBox.max.x)
+            else if(projectedPosition.x > _boundBox.max.x)
                 playerInBox.x = 1;
             if(projectedPosition.y < _boundBox.min.y) 
                 playerInBox.z = -1;

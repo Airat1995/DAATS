@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cc43a51a-e1d5-4691-b208-ab9274bd27a9" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.vscode/launch.json" beforeDir="false" afterPath="$PROJECT_DIR$/.vscode/launch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/AddressableAssetsData/AddressableAssetSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Enemy/Stalker/Stalker.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Enemy/Stalker/Stalker.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/FirstTutorial.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/FirstTutorial.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/ItFollows.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/ItFollows.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/Labyrynthin.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/Labyrynthin.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/ShittyPortals.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/ShittyPortals.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/Something_about_something.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/Something_about_something.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/Something_like_pacman.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/Something_like_pacman.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/Something_small_about_portals.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/Something_small_about_portals.prefab" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Component/BasicAIPlayer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Component/BasicAIPlayer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IAIPlayer.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IAIPlayer.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/System/AIPlayerExitLevelSystem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/System/AIPlayerExitLevelSystem.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/System/AIPlayerMovementSystem.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/System/AIPlayerMovementSystem.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/System/Interface/IPlayerExitLevelSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DontAskAboutThisShit/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DontAskAboutThisShit/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/Connection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/Connection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/Conversation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/Conversation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/ConversationNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/ConversationNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableCondition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableCondition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableConnection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableConversation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableConversation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableNode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableNode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableParameter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableParameter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableSetParamAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/EditableSetParamAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/NPCConversation.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/NPCConversation.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/SetParamAction.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/SetParamAction.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/UI/ConversationManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DialogueEditor/Assets/Scripts/UI/ConversationManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/ThirdTutorial.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/ThirdTutorial.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/LevelCollection.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/LevelCollection.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/another_pa_homage.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/another_pa_homage.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/ChaoticEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/ChaoticEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/ISlidingTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/ISlidingTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/ISpecialTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/ISpecialTile.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IWaypointsSpawnPoint.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IWaypointsSpawnPoint.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Portal.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Portal.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/SlidingTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/SlidingTile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/EnemyActivatorTile.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/EnemyActivatorTile.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IMovableEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IMovableEnemy.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IWaypointEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/Interface/IWaypointEnemy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/StalkerEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/StalkerEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/WaypointEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Component/WaypointEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/WaypointsSpawnPoint.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/WaypointsSpawnPoint.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameWorld/World/GameplayWorld.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameWorld/World/GameplayWorld.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Creator/Interface/ILevelCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Creator/Interface/ILevelCreator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/Creator/LevelCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/Creator/LevelCreator.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Level/LevelDescriptor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Level/LevelDescriptor.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Mangers/Resource/Interface/IResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Mangers/Resource/Interface/IResourceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Mangers/Resource/ResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Mangers/Resource/ResourceManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/ChaoticEnemyMovementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/ChaoticEnemyMovementSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/CameraFollowSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/CameraFollowSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/EnemyActivatorTileSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/EnemyActivatorTileSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/EnemyDeactivatorTileSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/EnemyDeactivatorTileSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/EnemyHitSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/EnemyHitSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/InputSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/InputSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/Interface/ILevelFinishSystem.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/Interface/ILevelFinishSystem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/Interface/IPlayerExitLevelSystem.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/LevelFinishSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/PlayerExitLevelSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/LevelFinishSystem.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/PlayerExitLevelSystem.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/PlayerHealthSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/PlayerHealthSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/PlayerMovementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/PlayerMovementSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/PortalSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/PortalSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/SlidingTileSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/SlidingTileSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/StalkerEnemyMovementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/StalkerEnemyMovementSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/WallHitSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/WallHitSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/WaypointMovementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/WaypointMovementSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Window/GameWindow/GameWindowPresenter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Window/GameWindow/GameWindowPresenter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,14 +72,15 @@
     </file-type-list>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Dummy.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.3.0/InputSystem/Devices/InputDevice.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="22MrrPzIIroG03N9fbLTbMZMSKy" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -83,7 +98,7 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="rider.run.widget.enabled.cache" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.C#" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
@@ -99,7 +114,7 @@
     </configuration>
     <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
       <option name="allowRunningInParallel" value="false" />
-      <option name="listenPortForConnections" value="true" />
+      <option name="listenPortForConnections" value="false" />
       <option name="pid" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
@@ -118,7 +133,10 @@
       <updated>1639658496025</updated>
       <workItem from="1639658499662" duration="122000" />
       <workItem from="1648071758054" duration="449000" />
-      <workItem from="1648072287047" duration="959000" />
+      <workItem from="1648072287047" duration="2009000" />
+      <workItem from="1650365265236" duration="9412000" />
+      <workItem from="1651060819725" duration="446000" />
+      <workItem from="1651868918159" duration="3127000" />
     </task>
     <servers />
   </component>
@@ -128,6 +146,18 @@
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>

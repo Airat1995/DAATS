@@ -1,9 +1,8 @@
 using DAATS.Component.Interface;
 using DAATS.System.Interface;
-using System.Collections.Generic;
 using UnityEngine;
 
-namespace DAATS.System
+namespace DAATS.Initializer.System
 {
     public class SlidingTileSystem : ISlidingTileSystem
     {

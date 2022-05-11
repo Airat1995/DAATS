@@ -2,7 +2,7 @@ using UnityEngine;
 using DAATS.Component.Interface;
 using DAATS.System.Interface;
 
-namespace DAATS.System
+namespace DAATS.Initializer.System
 {
     public class EnemyActivatorTileSystem : IEnemyActivatorTileSystem
     {

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading;
+﻿using System.Threading;
 using DAATS.System.Interface;
 using UnityEngine;
 using UnityEngine.InputSystem;

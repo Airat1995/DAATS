@@ -5,14 +5,14 @@ using UnityEngine;
 
 namespace DAATS.Initializer.System
 {
-    public class LevelFinishSystem : ILevelFinishSystem
+    public class PlayerExitLevelSystem : IPlayerExitLevelSystem
     {
         private readonly IExit _exitComponent;
         private readonly IPlayer _player;
         private readonly IGameWorld _currentWorld;
         private readonly ICollectionSystem _collectionSystem;
 
-        public LevelFinishSystem(IExit exitComponent, IPlayer player, IGameWorld currentWorld, ICollectionSystem collectionSystem)
+        public PlayerExitLevelSystem(IExit exitComponent, IPlayer player, IGameWorld currentWorld, ICollectionSystem collectionSystem)
         {
             _exitComponent = exitComponent;
             _player = player;

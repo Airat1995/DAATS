@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using DAATS.Component.Interface;
 using DAATS.Initializer.Level.Creator.Interface;
 using DAATS.Initializer.Manager.Resource.Interface;

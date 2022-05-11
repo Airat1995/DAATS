@@ -1,5 +1,4 @@
-﻿using System;
-using DAATS.Component.Interface;
+﻿using DAATS.Component.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace DAATS.Initializer.System
     public class WaypointMovementSystem : IWaypointMovementSystem
     {
         //Distance where we think that object meet final position
-        public static readonly float DISTANCE_THRESHOLD = 0.005f;
+        public static readonly float DISTANCE_THRESHOLD = 0.05f;
         private readonly Transform _moveTransform;
         private readonly IWaypointEnemy _enemy;
         

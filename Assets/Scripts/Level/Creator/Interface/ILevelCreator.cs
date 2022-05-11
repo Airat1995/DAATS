@@ -1,5 +1,4 @@
 ﻿using DAATS.Component.Interface;
-using System.Collections.Generic;
 
 namespace DAATS.Initializer.Level.Creator.Interface
 {

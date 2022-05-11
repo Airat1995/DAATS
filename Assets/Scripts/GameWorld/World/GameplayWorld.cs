@@ -8,7 +8,6 @@ using DAATS.Initializer.System;
 using DAATS.Initializer.System.Window;
 using DAATS.Initializer.System.Window.FogFollowWindow.Interface;
 using DAATS.Initializer.System.Window.GameWindow.Interface;
-using DAATS.System;
 using DAATS.System.Interface;
 using DAATS.UserData;
 using DAATS.UserData.Interface;
@@ -146,7 +145,7 @@ namespace DAATS.Initializer.GameWorld.World
             var requiredCollectionSystem =
                 new RequiredCollectionSystem(new Queue<IRequiredCollectable>(_levelCreator.RequiredCollectables),
                     _levelCreator.Player);
-            var levelFinishSystem = new LevelFinishSystem(_levelCreator.Exit, _levelCreator.Player, this, requiredCollectionSystem);
+            var levelFinishSystem = new PlayerExitLevelSystem(_levelCreator.Exit, _levelCreator.Player, this, requiredCollectionSystem);
             var slidingSystem = new SlidingTileSystem(_levelCreator.Player, playerMove,
                 _levelCreator.SlidingTiles,
                 _levelCreator.Walls);

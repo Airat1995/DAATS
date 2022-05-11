@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace DAATS.Component.Interface
+﻿namespace DAATS.Component.Interface
 {
     public interface IMovableEnemy : IEnemy
     {

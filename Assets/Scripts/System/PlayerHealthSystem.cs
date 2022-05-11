@@ -4,7 +4,7 @@ using DAATS.Component.Interface;
 using DAATS.Initializer.GameWorld.World.Interface;
 using DAATS.System.Interface;
 
-namespace DAATS.System
+namespace DAATS.Initializer.System
 {
 	public class PlayerHealthSystem : IPlayerHealthSystem
 	{
