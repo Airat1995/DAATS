@@ -219,6 +219,8 @@ MonoBehaviour:
   _portal: []
   _walls: []
   _slidingTiles: []
+  _activatorTiles: []
+  _deactivatorTiles: []
 --- !u!1001 &465123881534753007
 PrefabInstance:
   m_ObjectHideFlags: 0
