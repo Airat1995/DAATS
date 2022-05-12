@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1589104176943472774}
   - {fileID: 670969175129484154}
@@ -64,6 +65,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7188367019619817092}
   - {fileID: 175381893312157031}
@@ -97,6 +99,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3683118631364253890}
   - {fileID: 4877932116929566943}
@@ -147,6 +150,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8312276375405601609}
   m_Father: {fileID: 6643025405998062082}
@@ -179,6 +183,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3635288686146652177}
   - {fileID: 3077943650420073927}
@@ -215,6 +220,8 @@ MonoBehaviour:
   _portal: []
   _walls: []
   _slidingTiles: []
+  _activatorTiles: []
+  _deactivatorTiles: []
 --- !u!1001 &98539216981883197
 PrefabInstance:
   m_ObjectHideFlags: 0
