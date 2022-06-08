@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using DAATS.Component.Interface;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,7 +11,18 @@ namespace DAATS.Initializer.Component
 
         [SerializeField] 
         private float _speed;
-        public float Speed => _speed;
+
+        public float Speed
+        {
+            get =>_speed;
+            set => _speed = value;
+        }
+
+        public float TimeToRethink { get; set; }
+
+        public float ChanceToMiss { get; set; }
+
+        public List<Transform> PointsOfInterest { get; set; }
 
         [SerializeField]
         private NavMeshAgent _movementAgent;

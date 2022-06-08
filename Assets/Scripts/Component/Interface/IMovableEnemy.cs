@@ -2,6 +2,6 @@
 {
     public interface IMovableEnemy : IEnemy
     {
-        float Speed { get; }
+        float Speed { get; set; }
     }
 }

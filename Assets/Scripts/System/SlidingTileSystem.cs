@@ -59,8 +59,10 @@ namespace DAATS.Initializer.System
             _movementSystem.BlockMove(false);
 			if(!_sliding) return;
 
-            Physics.Raycast(new Ray(collider.transform.position, collider.transform.forward), out var hitInfo, 10.0f);
-            Vector3 incomingVec = hitInfo.point - collider.transform.position;
+            var transform = collider.transform;
+            var position = transform.position;
+            Physics.Raycast(new Ray(position, transform.forward), out var hitInfo, 10.0f);
+            Vector3 incomingVec = hitInfo.point - position;
             _lastNormal = Vector3.Reflect(incomingVec, hitInfo.normal);
 			_reverseMove = true;
         }

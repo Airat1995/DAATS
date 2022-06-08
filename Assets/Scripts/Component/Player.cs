@@ -1,4 +1,5 @@
-﻿using DAATS.Component.Interface;
+﻿using System;
+using DAATS.Component.Interface;
 using UnityEngine;
 
 namespace DAATS.Initializer.Component

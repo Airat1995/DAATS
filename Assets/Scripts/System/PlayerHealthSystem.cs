@@ -8,19 +8,14 @@ namespace DAATS.Initializer.System
 {
 	public class PlayerHealthSystem : IPlayerHealthSystem
 	{
-		private readonly IPlayer _player;
-		private readonly IGameWorld _world;
 
+		private readonly uint _maxHealth;
 		private uint _health;
-		private uint _maxHealth;
 
-		private List<Action<uint, uint>> _onHealthChangeCallbacks;
+		private Action<uint, uint> _onHealthChangeCallbacks = (curr, max) => { };
 
-		public PlayerHealthSystem(IPlayer player, IGameWorld world)
+		public PlayerHealthSystem(IPlayer player)
 		{
-			_onHealthChangeCallbacks = new List<Action<uint, uint>>();
-			_player = player;
-			_world = world;
 			_health = player.MaxHealth;
 			_maxHealth = player.MaxHealth;
 		}
@@ -28,24 +23,17 @@ namespace DAATS.Initializer.System
 		public void DealDamage(IEnemy enemy)
 		{
 			_health -= enemy.Damage;
-
-			foreach (var healthChange in _onHealthChangeCallbacks)
-			{
-				healthChange(_health, _maxHealth);
-			}
-
-			if(_health <= 0)
-				_world.LoseLevel();
+			_onHealthChangeCallbacks(_health, _maxHealth);
 		}
 
         public void SubscribeOnHealthChange(Action<uint, uint> onHealthChange)
         {
-            _onHealthChangeCallbacks.Add(onHealthChange);
+            _onHealthChangeCallbacks += onHealthChange;
         }
 
         public void UnsubscribeOnHealthChange(Action<uint, uint> onHealthChange)
         {
-            _onHealthChangeCallbacks.Remove(onHealthChange);
+            _onHealthChangeCallbacks -= onHealthChange;
         }
     }
 }

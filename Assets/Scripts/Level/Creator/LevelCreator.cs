@@ -16,10 +16,13 @@ namespace DAATS.Initializer.Level.Creator
         private LevelDescriptor _spawnedLevelDescriptor;
 
         public IPlayer Player { get; private set; }
-
-        public IRequiredCollectable[] RequiredCollectables { get; private set; }
-        public IPortal[] Portals {get; private set; }
+        public IAIPlayer AIPlayer { get; private set; }
         
+        public LevelType LevelType { get; private set; }
+
+        public ICollectable[] Collectables { get; private set; }
+        public IPortal[] Portals {get; private set; }
+
         public IExit Exit => _spawnedLevelDescriptor.Exit;
         public IStalkerEnemy[] StalkerEnemies { get; private set; }
         public IChaoticEnemy[] ChaoticEnemies { get; private set; }
@@ -44,7 +47,7 @@ namespace DAATS.Initializer.Level.Creator
         {
             _spawnedLevelDescriptor = _resourceManager.GetLevel(_levelData, _levelSpawnTransform);
             Player = _resourceManager.GetPlayerObject(_spawnedLevelDescriptor.PlayerSpawnTransform);
-            RequiredCollectables = _spawnedLevelDescriptor.RequiredCollectables;
+            Collectables = _spawnedLevelDescriptor.RequiredCollectables;
 
             StalkerEnemies = FillStalkerEnemies();
             ChaoticEnemies = FillChaoticEnemies();
@@ -57,18 +60,32 @@ namespace DAATS.Initializer.Level.Creator
             Conversation = _spawnedLevelDescriptor.Conversation;
             ActivatorTiles = _spawnedLevelDescriptor.ActivatorTiles;
             DeactivatorTiles = _spawnedLevelDescriptor.DeactivatorTiles;
+            LevelType = _spawnedLevelDescriptor.LevelType;
+
+            if (_spawnedLevelDescriptor.AISpawnPoint != null)
+                AIPlayer = _resourceManager.GetAIPlayer(_spawnedLevelDescriptor.AISpawnPoint);
         }
 
         public void DestroyLevel()
         {
-            foreach (var requiredCollectable in RequiredCollectables)
-            {
+            foreach (var requiredCollectable in Collectables)
                 _resourceManager.UnloadSymbol(requiredCollectable);
-            }
-
+            foreach (var stalkerEnemy in StalkerEnemies)
+                _resourceManager.UnloadEnemy(stalkerEnemy);
+            foreach (var chaoticEnemy in ChaoticEnemies)
+                _resourceManager.UnloadEnemy(chaoticEnemy);
+            foreach (var waypointEnemy in WaypointEnemies)
+                _resourceManager.UnloadEnemy(waypointEnemy);
+            
             _resourceManager.UnloadExit(Exit);
             _resourceManager.UnloadPlayer(Player);
             _resourceManager.UnloadLevel(_spawnedLevelDescriptor);
+            if (AIPlayer != null)
+                _resourceManager.UnloadAIplayer(AIPlayer);
+ 
+            StalkerEnemies = null;
+            ChaoticEnemies = null;
+            WaypointEnemies = null;
         }
 
         private IWaypointEnemy[] FillWaypointEnemies()

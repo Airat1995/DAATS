@@ -7,19 +7,19 @@ namespace DAATS.Initializer.Component
     public class EnemyActivatorTile : MonoBehaviour, IEnemyActivatorTile, IVisualElement
     {
         [SerializeField]
-        private EnemySpawnPoint[] _simpleSpawnPoints;
+        private MovableEnemySpawnPoint[] _simpleSpawnPoints;
 
         [SerializeField]
         private WaypointsEnemySpawnPoint[] _waypointSpawnPoints;
 
-        private IEnemySpawnPoint[] _spawnPoints;
-        public IEnemySpawnPoint[] EnemySpawnPoints
+        private IMovableEnemySpawnPoint[] _spawnPoints;
+        public IMovableEnemySpawnPoint[] EnemySpawnPoints
         {
             get
             {
                 if(_spawnPoints == null)
                 {
-                    _spawnPoints = new IEnemySpawnPoint[_simpleSpawnPoints.Length + _waypointSpawnPoints.Length];
+                    _spawnPoints = new IMovableEnemySpawnPoint[_simpleSpawnPoints.Length + _waypointSpawnPoints.Length];
                     _simpleSpawnPoints.CopyTo(_spawnPoints, 0);
                     _waypointSpawnPoints.CopyTo(_spawnPoints, _simpleSpawnPoints.Length);
                 }                

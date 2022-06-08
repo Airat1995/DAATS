@@ -6,11 +6,11 @@ namespace DAATS.Initializer.System
 {
     public class EnemyDeactivatorTileSystem : IEnemyDeactivatorTileSystem
     {
-        private readonly IPlayer _player;
+        private readonly IWorldTriggerObject _worldTriggerObject;
 
-        public EnemyDeactivatorTileSystem(IPlayer player, IEnemyDeactivatorTile[] deactivatorTiles)
+        public EnemyDeactivatorTileSystem(IWorldTriggerObject worldTriggerObject, IEnemyDeactivatorTile[] deactivatorTiles)
         {
-            _player = player;
+            _worldTriggerObject = worldTriggerObject;
 
             foreach (var slidingTile in deactivatorTiles)
             {
@@ -19,15 +19,16 @@ namespace DAATS.Initializer.System
         }
 
 		private void OnEnterTile(Collider collider, IEnemyDeactivatorTile deactivatorTile)
-		{
-            if (!_player.IsSameGameObject(collider.gameObject)) return;
+        {
+            if (!_worldTriggerObject.IsSameGameObject(collider.gameObject))
+                return;
             foreach (var activatorTile in deactivatorTile.ConnectedTile)
             {
                 foreach (var enemySpawnPoint in activatorTile.EnemySpawnPoints)
                 {
-                    enemySpawnPoint.AssociatedEnemy.Disable();
+                    enemySpawnPoint.AssociatedEnemy?.Disable();
                 }
-            }            
+            }
 		}
     }
 }

@@ -35,9 +35,13 @@ namespace DAATS.Initializer.Level
         public LevelData LevelInfo => _levelInfo;
 
         [SerializeField]
+        private LevelType _levelType;
+        public LevelType LevelType => _levelType;
+
+        [SerializeField]
         private bool _hiddenVision;
         public bool HiddenVision => _hiddenVision;
-
+        
         [SerializeField]
         private float _cameraOffset;
         public float CameraOffset => _cameraOffset;
@@ -55,8 +59,12 @@ namespace DAATS.Initializer.Level
         public IWaypointsEnemySpawnPoint[] ChaoticEnemySpawnPoints => _chaoticEnemySpawnPoints;
 
         [SerializeField]
-        private EnemySpawnPoint[] _stalkerEnemySpawnPoints;
-        public IEnemySpawnPoint[] StalkerEnemySpawnPoints => _stalkerEnemySpawnPoints;
+        private MovableEnemySpawnPoint[] _stalkerEnemySpawnPoints;
+        public IMovableEnemySpawnPoint[] StalkerEnemySpawnPoints => _stalkerEnemySpawnPoints;
+
+        [SerializeField]
+        private AISpawnPoint _aiSpawnPoint;
+        public IAISpawnPoint AISpawnPoint => _aiSpawnPoint;
 
         [SerializeField]
         private Exit _exit;
@@ -108,7 +116,7 @@ namespace DAATS.Initializer.Level
                 .Where(spawnPoint => spawnPoint.tag.Equals(WaypointEnemySpawnPointTag)).ToArray();
             _chaoticEnemySpawnPoints = prefabStage.FindComponentsOfType<WaypointsEnemySpawnPoint>()
                 .Where(spawnPoint => spawnPoint.tag.Equals(ChaoticEnemySpawnPointTag)).ToArray();
-            _stalkerEnemySpawnPoints = prefabStage.FindComponentsOfType<EnemySpawnPoint>()
+            _stalkerEnemySpawnPoints = prefabStage.FindComponentsOfType<MovableEnemySpawnPoint>()
                 .Where(spawnPoint => spawnPoint.tag.Equals(StalkerEnemySpawnPointTag)).ToArray();
             EditorUtility.SetDirty(gameObject);        }
         public void FillInfo(string levelName, int levelNum, bool hide)

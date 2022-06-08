@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DAATS.Component.Interface;
+using DAATS.Initializer.GameModes;
+using DAATS.Initializer.GameModes.Interface;
 using DAATS.Initializer.GameWorld.World.Interface;
+using DAATS.Initializer.Level;
 using DAATS.Initializer.Level.Creator;
 using DAATS.Initializer.Level.Interface;
 using DAATS.Initializer.Manager.Resource.Interface;
@@ -23,6 +27,7 @@ namespace DAATS.Initializer.GameWorld.World
         private List<IUpdatableSystem> _updatableSystems = new List<IUpdatableSystem>();
         private LevelCreator _levelCreator;
         private LevelData _currentLevel;
+        private IGameMode _gameMode;
 
         private WindowManager _windowManager => _container.Resolve<WindowManager>();
         private IGetUserProgressData _userProgressData => _container.Resolve<IGetUserProgressData>();
@@ -40,7 +45,7 @@ namespace DAATS.Initializer.GameWorld.World
 
         public void AddCallableSystem(ICallableSystem addSystem)
         {
-            bool isAlreadyHaveBind = _container.HasBinding(addSystem.GetType());
+            var isAlreadyHaveBind = _container.HasBinding(addSystem.GetType());
             if(!isAlreadyHaveBind)    
                 _container.Bind(addSystem.GetType()).FromInstance(addSystem);
             _callableSystems.Add(addSystem);
@@ -48,7 +53,7 @@ namespace DAATS.Initializer.GameWorld.World
 
         public void AddUpdatableSystem(IUpdatableSystem addSystem)
         {
-            bool isAlreadyHaveBind = _container.HasBinding(addSystem.GetType());
+            var isAlreadyHaveBind = _container.HasBinding(addSystem.GetType());
             if(!isAlreadyHaveBind)            
                 _container.Bind(addSystem.GetType()).FromInstance(addSystem);
             _updatableSystems.Add(addSystem);
@@ -96,7 +101,8 @@ namespace DAATS.Initializer.GameWorld.World
 
 		
 		private void ClearWorld()
-		{
+        {
+            _gameMode = null;
 			_windowManager.CloseAllWindows();
 			_levelCreator.DestroyLevel();
 			_updatableSystems.Clear();
@@ -142,10 +148,7 @@ namespace DAATS.Initializer.GameWorld.World
             var cameraFollow = new CameraFollowSystem(_camera, _levelCreator.Player, _levelCreator.CameraOffset);
             AddUpdatableSystem(cameraFollow);
 
-            var requiredCollectionSystem =
-                new RequiredCollectionSystem(new Queue<IRequiredCollectable>(_levelCreator.RequiredCollectables),
-                    _levelCreator.Player);
-            var levelFinishSystem = new PlayerExitLevelSystem(_levelCreator.Exit, _levelCreator.Player, this, requiredCollectionSystem);
+            var levelFinishSystem = new ExitLevelSystem(_levelCreator.Exit, _levelCreator.Player);
             var slidingSystem = new SlidingTileSystem(_levelCreator.Player, playerMove,
                 _levelCreator.SlidingTiles,
                 _levelCreator.Walls);
@@ -154,50 +157,95 @@ namespace DAATS.Initializer.GameWorld.World
 			allEnemies.AddRange(_levelCreator.WaypointEnemies);
 			allEnemies.AddRange(_levelCreator.ChaoticEnemies);
 			allEnemies.AddRange(_levelCreator.StalkerEnemies);
-			
-			var playerHealthSystem = new PlayerHealthSystem(_levelCreator.Player, this);
+
+            var playerHealthSystem = new PlayerHealthSystem(_levelCreator.Player);
 			AddCallableSystem(playerHealthSystem);
 			
 			var enemyHitSystem = new EnemyHitSystem(allEnemies, playerMove, _levelCreator.Player, playerHealthSystem);
 			AddCallableSystem(enemyHitSystem);
             AddCallableSystem(enemyHitSystem);
 
-            AddCallableSystem(requiredCollectionSystem);
             AddCallableSystem(levelFinishSystem);
             AddCallableSystem(slidingSystem);
 
-            AddCallableSystem(new EnemyActivatorTileSystem(_levelCreator.Player, _levelCreator.ActivatorTiles));
-            AddCallableSystem(new EnemyDeactivatorTileSystem(_levelCreator.Player, _levelCreator.DeactivatorTiles));
-
+            AddEnemyActivationSystems(_levelCreator.Player);
+            
             _windowManager.OpenWindow<IGameWindowController>();
             if(_levelCreator.HiddenVision)
-            {
                 _windowManager.OpenWindow<IFogFollowWindowController>();
+            
+            if (_levelCreator.AIPlayer != null)
+            {
+                var aiMovementSystem = new AIPlayerMovementSystem(_levelCreator.AIPlayer, _levelCreator.Exit);
+                AddUpdatableSystem(aiMovementSystem);
+                AddCallableSystem(new ExitLevelSystem(_levelCreator.Exit, _levelCreator.AIPlayer));
+                
+                var aiPortalSystem = new PortalSystem(_levelCreator.AIPlayer, aiMovementSystem, _levelCreator.Portals);
+                AddCallableSystem(aiPortalSystem);
+                AddEnemyActivationSystems(_levelCreator.AIPlayer);
+
+
             }
+
+            switch (_levelCreator.LevelType)
+            {
+                case LevelType.CrossFinish:
+                    break;
+                case LevelType.Timer:
+                    break;
+                case LevelType.RequiredCollectables:
+                    
+                    var requiredCollectionSystem =
+                        new RequiredCollectionSystem(new Queue<IRequiredCollectable>(_levelCreator.Collectables as IEnumerable<IRequiredCollectable> ?? 
+                                throw new InvalidOperationException("Unable to use other types collectables other than IRequiredCollectable")),
+                            _levelCreator.Player);
+                    AddCallableSystem(requiredCollectionSystem);
+
+                    _gameMode = new RequiredCollectablesGameMode(requiredCollectionSystem,
+                        playerHealthSystem, levelFinishSystem, this);
+                    break;
+                case LevelType.CollectMore:
+
+                    var aiCollectables = new MoreCollectionSystem(_levelCreator.AIPlayer, _levelCreator.Collectables);
+                    var playerCollectables = new MoreCollectionSystem(_levelCreator.Player, _levelCreator.Collectables);
+
+                    _gameMode = new AllCollectablesGameMode(_levelCreator.Collectables,
+                        playerCollectables, aiCollectables, playerHealthSystem, levelFinishSystem, this,
+                        _levelCreator.AIPlayer);
+                    
+                    AddCallableSystem(aiCollectables);
+                    AddCallableSystem(playerCollectables);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+            
+            
         }
 
         private void CreateStalkerEnemies()
         {
             foreach (var stalkerEnemy in _levelCreator.StalkerEnemies)
-            {
                 AddUpdatableSystem(new StalkerEnemyMovementSystem(stalkerEnemy, _levelCreator.Player));
-            }
         }
 
         private void CreateChaoticEnemies()
         {
             foreach (var chaoticEnemy in _levelCreator.ChaoticEnemies)
-            {
                 AddUpdatableSystem(new ChaoticEnemyMovementSystem(chaoticEnemy));
-            }
         }
 
         private void CreateWaypointEnemies()
         {
             foreach (var waypointEnemy in _levelCreator.WaypointEnemies)
-            {
                 AddUpdatableSystem(new WaypointMovementSystem(waypointEnemy));
-            }
+        }
+
+        private void AddEnemyActivationSystems(IWorldTriggerObject worldTriggerObject)
+        {
+            AddCallableSystem(new EnemyActivatorTileSystem(worldTriggerObject, _levelCreator.ActivatorTiles));
+            AddCallableSystem(new EnemyDeactivatorTileSystem(worldTriggerObject, _levelCreator.DeactivatorTiles));
+
         }
     }
 }

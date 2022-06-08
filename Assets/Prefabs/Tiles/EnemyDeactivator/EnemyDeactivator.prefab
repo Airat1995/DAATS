@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7693214264389302789}
   - component: {fileID: 1805240604439162532}
   - component: {fileID: 1535327419406803161}
+  - component: {fileID: -3034408416697651182}
   - component: {fileID: 5963009710694843196}
   m_Layer: 0
   m_Name: EnemyDeactivator
@@ -98,6 +99,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3034408416697651182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3948872946300885699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 1
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!114 &5963009710694843196
 MonoBehaviour:
   m_ObjectHideFlags: 0
