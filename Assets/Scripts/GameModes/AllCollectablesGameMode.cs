@@ -5,7 +5,6 @@ using DAATS.Initializer.GameModes.Interface;
 using DAATS.Initializer.GameWorld.World.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
-using NotImplementedException = System.NotImplementedException;
 
 namespace DAATS.Initializer.GameModes
 {
@@ -24,14 +23,15 @@ namespace DAATS.Initializer.GameModes
         private int _playerCollectedCount = 0;
         private int _aiCollectedCount = 0;
 
-        public AllCollectablesGameMode(ICollectable[] allCollectables, ICollectionSystem playerCollectionSystem, ICollectionSystem aiCollectionSystem, IPlayerHealthSystem playerHealthSystem, IExitLevelSystem exitLevelSystem, IGameWorld gameWorld, IAIPlayer aiPlayer)
+        public AllCollectablesGameMode(IReadOnlyCollection<ICollectable> allCollectables, ICollectionSystem playerCollectionSystem, ICollectionSystem aiCollectionSystem, IPlayerHealthSystem playerHealthSystem, IExitLevelSystem exitLevelSystem, IGameWorld gameWorld, IAIPlayer aiPlayer)
         {
             playerCollectionSystem.SubscribeOnCollectedOne(PlayerCollectedOne);
             aiCollectionSystem.SubscribeOnCollectedOne(AICollectedOne);
-            _exitLevelSystem = exitLevelSystem;
+            exitLevelSystem.SubscribeOnLevelExitReach(OnExitReached);
+            playerHealthSystem.SubscribeOnHealthChange(OnHealthChanged);
             _gameWorld = gameWorld;
 
-            _allCollectablesCount = allCollectables.Length;
+            _allCollectablesCount = allCollectables.Count;
             
             _collected += (collectable) =>
             {
@@ -39,26 +39,30 @@ namespace DAATS.Initializer.GameModes
             };
         }
 
+        private void OnHealthChanged(uint current, uint max)
+        {
+            if (current == 0)
+                _gameWorld.LoseLevel();
+        }
+
+        private void OnExitReached()
+        {
+            if (_playerCollectedCount > Mathf.RoundToInt(_allCollectablesCount / 2.0f + 0.1f))
+                _gameWorld.FinishLevel();
+            else
+                _gameWorld.LoseLevel();
+        }
+
         private void AICollectedOne(ICollectable collectable)
         {
             ++_aiCollectedCount;
             _collected(collectable);
-
-            // if (_aiCollectedCount < Mathf.RoundToInt(_allCollectablesCount/2.0f + 0.1f))
-            //     return;
-
-            //_gameWorld.LoseLevel();
         }
 
         private void PlayerCollectedOne(ICollectable collectable)
         {
             ++_playerCollectedCount;
             _collected(collectable);
-            
-            // if (_playerCollectedCount < Mathf.RoundToInt(_allCollectablesCount%2 + 0.1f))
-            //     return;
-            
-            //_gameWorld.FinishLevel();
         }
     }
 }

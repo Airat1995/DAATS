@@ -89,7 +89,7 @@ namespace DAATS.Initializer.System
             else
             {
                 _moveToRightPosition = true;
-                var movePosition = _aiPlayer.PointsOfInterest[0].position;
+                var movePosition = GetNearestPoint();
                 _currentInterestPoint = Mathf.Min(_aiPlayer.PointsOfInterest.Count - 1, _currentInterestPoint + 1);
                 finalPos = movePosition;
                 
@@ -139,6 +139,28 @@ namespace DAATS.Initializer.System
             var hit = Physics.Raycast(wallRay, raycastHit.distance, _wallLayerMask);
             return hit;
         }
+
+        private Vector3 GetNearestPoint()
+        {
+            var nearestPoint = _aiPlayer.PointsOfInterest[0].position;
+            if (_aiPlayer.PointsOfInterest.Count <= 1) return nearestPoint;
+            var aiPosition = _aiPlayer.Transform.position;
+            var minDistance = 100000.0f;
+            var foundIndex = 0;
+            for (var index = 0; index < _aiPlayer.PointsOfInterest.Count; index++)
+            {
+                var point = _aiPlayer.PointsOfInterest[index];
+                var distance = Vector3.Distance(aiPosition, point.position);
+                if (!(distance < minDistance)) continue;
+                minDistance = distance;
+                foundIndex = index;
+            }
+
+            nearestPoint = _aiPlayer.PointsOfInterest[foundIndex].position;
+
+            return nearestPoint;
+        }
+        
 
         public void SetPosition(Vector3 position)
         {
