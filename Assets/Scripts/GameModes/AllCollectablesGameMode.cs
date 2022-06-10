@@ -23,11 +23,12 @@ namespace DAATS.Initializer.GameModes
         private int _playerCollectedCount = 0;
         private int _aiCollectedCount = 0;
 
-        public AllCollectablesGameMode(IReadOnlyCollection<ICollectable> allCollectables, ICollectionSystem playerCollectionSystem, ICollectionSystem aiCollectionSystem, IPlayerHealthSystem playerHealthSystem, IExitLevelSystem exitLevelSystem, IGameWorld gameWorld, IAIPlayer aiPlayer)
+        public AllCollectablesGameMode(IReadOnlyCollection<ICollectable> allCollectables, ICollectionSystem playerCollectionSystem, ICollectionSystem aiCollectionSystem, IPlayerHealthSystem playerHealthSystem, IExitLevelSystem exitLevelSystem, IExitLevelSystem aiExitLevelSystem, IGameWorld gameWorld, IAIPlayer aiPlayer)
         {
             playerCollectionSystem.SubscribeOnCollectedOne(PlayerCollectedOne);
             aiCollectionSystem.SubscribeOnCollectedOne(AICollectedOne);
             exitLevelSystem.SubscribeOnLevelExitReach(OnExitReached);
+            aiExitLevelSystem.SubscribeOnLevelExitReach(OnExitReached);
             playerHealthSystem.SubscribeOnHealthChange(OnHealthChanged);
             _gameWorld = gameWorld;
 

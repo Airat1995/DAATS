@@ -208,10 +208,11 @@ namespace DAATS.Initializer.GameWorld.World
 
                     var aiCollectables = new MoreCollectionSystem(_levelCreator.AIPlayer, _levelCreator.Collectables);
                     var playerCollectables = new MoreCollectionSystem(_levelCreator.Player, _levelCreator.Collectables);
+                    var aiExitSystem = new ExitLevelSystem(_levelCreator.Exit, _levelCreator.AIPlayer);
 
                     _gameMode = new AllCollectablesGameMode(_levelCreator.Collectables,
-                        playerCollectables, aiCollectables, playerHealthSystem, levelFinishSystem, this,
-                        _levelCreator.AIPlayer);
+                        playerCollectables, aiCollectables, playerHealthSystem, levelFinishSystem, aiExitSystem,
+                        this, _levelCreator.AIPlayer);
                     
                     AddCallableSystem(aiCollectables);
                     AddCallableSystem(playerCollectables);

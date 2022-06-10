@@ -6,7 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="cc43a51a-e1d5-4691-b208-ab9274bd27a9" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DontAskAboutThisShit/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DontAskAboutThisShit/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/NavMesh-Floor.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/NavMesh-Floor.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Level/ThirdTutorial.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Level/ThirdTutorial.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/TileSubscriber.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Component/TileSubscriber.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameModes/AllCollectablesGameMode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameModes/AllCollectablesGameMode.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameWorld/World/GameplayWorld.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameWorld/World/GameplayWorld.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/System/AIPlayerMovementSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/System/AIPlayerMovementSystem.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -77,10 +84,10 @@
       </option>
       <method v="2" />
     </configuration>
-    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="43410">
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost" ignored-value-for-modified-check="48131">
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
-      <option name="pid" value="43410" />
+      <option name="pid" value="48131" />
       <option name="projectPathOnTarget" />
       <option name="selectedOptions">
         <list />
@@ -104,7 +111,7 @@
       <workItem from="1651868918159" duration="3127000" />
       <workItem from="1652710307528" duration="6976000" />
       <workItem from="1652886537096" duration="993000" />
-      <workItem from="1653599482663" duration="44507000" />
+      <workItem from="1653599482663" duration="46269000" />
     </task>
     <servers />
   </component>

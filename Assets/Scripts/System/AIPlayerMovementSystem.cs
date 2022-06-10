@@ -145,7 +145,7 @@ namespace DAATS.Initializer.System
             var nearestPoint = _aiPlayer.PointsOfInterest[0].position;
             if (_aiPlayer.PointsOfInterest.Count <= 1) return nearestPoint;
             var aiPosition = _aiPlayer.Transform.position;
-            var minDistance = 100000.0f;
+            var minDistance = float.MaxValue;
             var foundIndex = 0;
             for (var index = 0; index < _aiPlayer.PointsOfInterest.Count; index++)
             {
