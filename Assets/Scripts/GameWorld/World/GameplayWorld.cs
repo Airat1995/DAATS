@@ -10,12 +10,12 @@ using DAATS.Initializer.Level.Interface;
 using DAATS.Initializer.Manager.Resource.Interface;
 using DAATS.Initializer.System;
 using DAATS.Initializer.System.Window;
-using DAATS.Initializer.System.Window.FogFollowWindow.Interface;
 using DAATS.Initializer.System.Window.GameWindow.Interface;
 using DAATS.System.Interface;
 using DAATS.UserData;
 using DAATS.UserData.Interface;
 using DialogueEditor;
+using UnityEngine.Rendering.Universal;
 using Zenject;
 
 namespace DAATS.Initializer.GameWorld.World
@@ -23,8 +23,8 @@ namespace DAATS.Initializer.GameWorld.World
     public class GameplayWorld : IGameWorld
     {
         private readonly DiContainer _container;
-        private List<ICallableSystem> _callableSystems = new List<ICallableSystem>();
-        private List<IUpdatableSystem> _updatableSystems = new List<IUpdatableSystem>();
+        private List<ICallableSystem> _callableSystems = new();
+        private List<IUpdatableSystem> _updatableSystems = new();
         private LevelCreator _levelCreator;
         private LevelData _currentLevel;
         private IGameMode _gameMode;
@@ -36,6 +36,7 @@ namespace DAATS.Initializer.GameWorld.World
         private ILevelCollection _levelCollection => _container.Resolve<ILevelCollection>();
         private ICameraComponent _camera => _container.Resolve<ICameraComponent>();
         private ConversationManager _conversationManager => _container.Resolve<ConversationManager>();
+        private UniversalRendererData _rendererData => _container.Resolve<UniversalRendererData>();
 
         public GameplayWorld(DiContainer container)
         {
@@ -171,9 +172,8 @@ namespace DAATS.Initializer.GameWorld.World
             AddEnemyActivationSystems(_levelCreator.Player);
             
             _windowManager.OpenWindow<IGameWindowController>();
-            if(_levelCreator.HiddenVision)
-                _windowManager.OpenWindow<IFogFollowWindowController>();
-            
+            _rendererData.rendererFeatures[0].SetActive(_levelCreator.HiddenVision);
+
             if (_levelCreator.AIPlayer != null)
             {
                 var aiMovementSystem = new AIPlayerMovementSystem(_levelCreator.AIPlayer, _levelCreator.Exit);

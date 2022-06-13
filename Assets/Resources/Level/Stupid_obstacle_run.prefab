@@ -26,6 +26,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 45.86024, y: 0.0006599426, z: -12.295369}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5273172758925287274}
   - {fileID: 8601665481569863701}
@@ -62,6 +63,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7171716126475440902}
   - {fileID: 6531192156620975847}
@@ -154,6 +156,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7205460082314036359}
   - {fileID: 6028120003670602242}
@@ -181,17 +184,21 @@ MonoBehaviour:
   _levelInfo:
     LevelNum: 0
     Name: Stupid_obstacle_run
+  _levelType: 0
   _hiddenVision: 0
   _cameraOffset: 0
   _playerSpawnPoint: {fileID: 0}
   _waypointEnemySpawnTransforms: []
   _chaoticEnemySpawnPoints: []
   _stalkerEnemySpawnPoints: []
+  _aiSpawnPoint: {fileID: 0}
   _exit: {fileID: 0}
   _requiredCollectables: []
   _portal: []
   _walls: []
   _slidingTiles: []
+  _activatorTiles: []
+  _deactivatorTiles: []
 --- !u!1 &4093324313525304126
 GameObject:
   m_ObjectHideFlags: 0
@@ -218,6 +225,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 15.903237, y: 0.0005187988, z: -26.731594}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5501223392619209971}
   - {fileID: 1122352506754867350}
@@ -251,6 +259,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 221757302291415383}
   m_Father: {fileID: 1522151500601100626}
@@ -282,6 +291,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 23.894123, y: 0.0006084442, z: 19.498396}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1525440585940780514}
   m_Father: {fileID: 1522151500601100626}
@@ -313,6 +323,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 60.47874, y: 0.0011672974, z: 56.28162}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5344600787137011590}
   - {fileID: 289868516901387292}
@@ -345,6 +356,7 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 39.031685, y: 0.001373291, z: -64.44303}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5264243512421261344}
   m_Father: {fileID: 1522151500601100626}

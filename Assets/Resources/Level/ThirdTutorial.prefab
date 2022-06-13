@@ -357,7 +357,7 @@ MonoBehaviour:
     LevelNum: 2
     Name: ThirdTutorial
   _levelType: 3
-  _hiddenVision: 0
+  _hiddenVision: 1
   _cameraOffset: 30
   _playerSpawnPoint: {fileID: 2688473834561498228}
   _waypointEnemySpawnTransforms: []

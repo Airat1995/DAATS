@@ -1,4 +1,5 @@
-﻿using DAATS.Component.Interface;
+﻿using Cyan;
+using DAATS.Component.Interface;
 using DAATS.Initializer.Component;
 using DAATS.Initializer.GameWorld.Loader;
 using DAATS.Initializer.GameWorld.Loader.Interface;
@@ -14,6 +15,7 @@ using DAATS.UserData;
 using DAATS.UserData.Interface;
 using DialogueEditor;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using Zenject;
 
 namespace DAATS.Initializer
@@ -31,6 +33,9 @@ namespace DAATS.Initializer
 
         [SerializeField]
         private ConversationManager _conversationManager;
+
+        [SerializeField]
+        private UniversalRendererData _currentRendererData;
 
         public override void InstallBindings()
         {
@@ -73,6 +78,10 @@ namespace DAATS.Initializer
 
             Container.Bind<ConversationManager>()
                 .FromInstance(_conversationManager)
+                .AsSingle();
+
+            Container.Bind<UniversalRendererData>()
+                .FromInstance(_currentRendererData)
                 .AsSingle();
         }
     }
