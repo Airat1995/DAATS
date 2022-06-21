@@ -1,4 +1,5 @@
-﻿using DAATS.Component.Interface;
+﻿using System;
+using DAATS.Component.Interface;
 using UnityEngine;
 
 namespace DAATS.System.Interface
@@ -8,5 +9,8 @@ namespace DAATS.System.Interface
         bool AllCollected { get; }
 
         void TryToCollect(Collider collider, ICollectable collectable);
+
+        void SubscribeOnCollectedOne(Action<ICollectable> onCollected);
+        void SubscribeOnCollectedAll(Action<ICollectable> allCollected);
     }
 }

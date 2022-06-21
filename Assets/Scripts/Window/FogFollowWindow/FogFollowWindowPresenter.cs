@@ -38,8 +38,7 @@ namespace DAATS.Window.FogFollowWindow
 
         public void Update(float deltaTime)
         {
-            var objectPosition = _camera.WorldToScreenPoint(_player.Transform.position, Camera.MonoOrStereoscopicEye.Mono);            
-            _window.UpdateFogPosition(objectPosition);
+            var objectPosition = _camera.WorldToScreenPoint(_player.Transform.position, Camera.MonoOrStereoscopicEye.Mono);
         }
     }
 }

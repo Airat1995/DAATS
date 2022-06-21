@@ -1,14 +1,15 @@
 ﻿using DAATS.Component.Interface;
-using System.Collections.Generic;
 
 namespace DAATS.Initializer.Level.Creator.Interface
 {
     public interface ILevelCreator
     {
         IPlayer Player { get; }
-        IRequiredCollectable[] RequiredCollectables { get; }
+        IAIPlayer AIPlayer { get; }
+        ICollectable[] Collectables { get; }
         IExit Exit { get; }
         IPortal[] Portals { get; }
+        LevelType LevelType { get; }
 
         bool HiddenVision { get; }
 

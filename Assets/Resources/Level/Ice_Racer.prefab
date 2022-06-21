@@ -167,6 +167,7 @@ MonoBehaviour:
   _waypointEnemySpawnTransforms: []
   _chaoticEnemySpawnPoints: []
   _stalkerEnemySpawnPoints: []
+  _aiSpawnPoint: {fileID: 0}
   _exit: {fileID: 0}
   _requiredCollectables: []
   _portal: []

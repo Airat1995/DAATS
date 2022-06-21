@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DAATS.Component.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
@@ -9,6 +10,9 @@ namespace DAATS.Initializer.System
     {
         private readonly Queue<IRequiredCollectable> _requiredCollectables;
         private readonly IPlayer _player;
+
+        private Action<ICollectable> _onCollectedOne = (collectable) => { };
+        private Action<ICollectable> _onCollectedAll = (collectable) => { };
 
         public bool AllCollected => _requiredCollectables.Count == 0;
 
@@ -30,8 +34,22 @@ namespace DAATS.Initializer.System
             if(_requiredCollectables.Peek() != collectable)
                 return;
 
-            collectable.Hide();
+            collectable.Collect();
             _requiredCollectables.Dequeue();
+
+            _onCollectedOne(collectable);
+            if (AllCollected)
+                _onCollectedAll(collectable);
+        }
+
+        public void SubscribeOnCollectedOne(Action<ICollectable> onCollected)
+        {
+            _onCollectedOne += onCollected;
+        }
+
+        public void SubscribeOnCollectedAll(Action<ICollectable> allCollected)
+        {
+            _onCollectedAll += allCollected;
         }
     }
 }

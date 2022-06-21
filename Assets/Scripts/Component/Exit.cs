@@ -9,6 +9,8 @@ namespace DAATS.Initializer.Component
     {
         private Action<Collider> _onCollisionEnter = collision => { };
 
+        public Vector3 Position => transform.position;
+
         public void SubscribeOnCollide(Action<Collider> collisionAction)
         {
             _onCollisionEnter += collisionAction;

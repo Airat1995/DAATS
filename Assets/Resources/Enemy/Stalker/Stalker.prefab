@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -1669456749264677428}
   - component: {fileID: 622283314293612453}
   - component: {fileID: 7471687703291143394}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stalker
   m_TagString: Untagged
   m_Icon: {fileID: 0}

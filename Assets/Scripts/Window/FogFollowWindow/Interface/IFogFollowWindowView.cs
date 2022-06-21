@@ -6,7 +6,5 @@ namespace DAATS.Window.FogFollowWindow.Interface
     interface IFogFollowWindowView : IWindowView
     {
         void SetEventReceiver(IFogWindowEventReceiver eventReceiver);
-
-        void UpdateFogPosition(Vector3 imagePosition);
     }
 }

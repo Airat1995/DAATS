@@ -33,7 +33,7 @@ namespace DAATS.Initializer.Manager.Resource
             return playerGO;
         }
 
-        public StalkerEnemy GetStalkerEnemyObject(IEnemySpawnPoint spawnPoint)
+        public IStalkerEnemy GetStalkerEnemyObject(IMovableEnemySpawnPoint spawnPoint)
         {
             string enemyName = _resourceFolder + "Enemy/Stalker/Stalker";
             var enemyGO = InstantiateObject<StalkerEnemy>(spawnPoint.SpawnTransform, enemyName);
@@ -42,7 +42,7 @@ namespace DAATS.Initializer.Manager.Resource
             return enemyGO;
         }
 
-        public ChaoticEnemy GetChaoticEnemyObject(IWaypointsEnemySpawnPoint spawnPoint)
+        public IChaoticEnemy GetChaoticEnemyObject(IWaypointsEnemySpawnPoint spawnPoint)
         {
             string enemyName = _resourceFolder + "Enemy/Chaotic/Chaotic";
             var enemyGO = InstantiateObject<ChaoticEnemy>(spawnPoint.SpawnTransform, enemyName);
@@ -52,7 +52,7 @@ namespace DAATS.Initializer.Manager.Resource
             return enemyGO;
         }
 
-        public WaypointEnemy GetWaypointEnemyObject(IWaypointsEnemySpawnPoint spawnPoint)
+        public IWaypointEnemy GetWaypointEnemyObject(IWaypointsEnemySpawnPoint spawnPoint)
         {
             string enemyName = _resourceFolder + "Enemy/Waypoint/Waypoint";
             var enemyGO = InstantiateObject<WaypointEnemy>(spawnPoint.SpawnTransform, enemyName);
@@ -62,7 +62,19 @@ namespace DAATS.Initializer.Manager.Resource
             return enemyGO;
         }
 
-        private void SetEnemyInitialData(IEnemySpawnPoint spawnPoint, IEnemy enemy)
+        public IAIPlayer GetAIPlayer(IAISpawnPoint spawnPoint)
+        {
+            string enemyName = _resourceFolder + "AI/AIPlayer";
+            var aiPlayer = InstantiateObject<BasicAIPlayer>(spawnPoint.SpawnTransform, enemyName);
+            aiPlayer.Speed = spawnPoint.Speed;
+            aiPlayer.ChanceToMiss = spawnPoint.ChanceToMiss;
+            aiPlayer.TimeToRethink = spawnPoint.TimeToRethink;
+            aiPlayer.PointsOfInterest = spawnPoint.PointsOfInterest; 
+
+            return aiPlayer;
+        }
+
+        private void SetEnemyInitialData(IMovableEnemySpawnPoint spawnPoint, IMovableEnemy enemy)
         {
             spawnPoint.AddAssociatedEnemy(enemy);
             if (spawnPoint.EnabledFromStart)
@@ -84,6 +96,11 @@ namespace DAATS.Initializer.Manager.Resource
         public void UnloadEnemy(IEnemy enemy)
         {
             Object.Destroy((Object)enemy);
+        }
+
+        public void UnloadAIplayer(IAIPlayer aiPlayer)
+        {
+            Object.Destroy((BasicAIPlayer)aiPlayer);
         }
 
         public void UnloadSymbol(ICollectable requiredCollectable)

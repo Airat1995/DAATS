@@ -10,8 +10,11 @@ namespace DAATS.Initializer.Component
         private MeshRenderer _renderer;
         public Material Material => _renderer.material;
 
+        public Transform Transform => transform;
         
         private Action<Collider,ICollectable> _onColliderAction = (collision, collectable) => { };
+        
+        public bool Collected { get; private set; }
 
         public void SubscribeCollision(Action<Collider, ICollectable> tryToCollect)
         {
@@ -23,12 +26,18 @@ namespace DAATS.Initializer.Component
             _onColliderAction -= tryToCollect;
         }
 
+        public void Collect()
+        {
+            Collected = true;
+            Hide();
+        }
+
         public void OnTriggerEnter(Collider collider)
         {
             _onColliderAction?.Invoke(collider, this);
         }
 
-        public void Hide()
+        private void Hide()
         {
             gameObject.SetActive(false);
         }

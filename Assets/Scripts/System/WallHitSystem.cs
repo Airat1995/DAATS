@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using DAATS.Component.Interface;
 using DAATS.System.Interface;
 
-namespace DAATS.System
+namespace DAATS.Initializer.System
 {
 	public class WallHitSystem : IWallHitSystem
 	{

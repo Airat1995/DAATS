@@ -3,20 +3,18 @@ using DAATS.Component.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
 
-namespace DAATS.System
+namespace DAATS.Initializer.System
 {
 	public class EnemyHitSystem : IEnemyHitSystem
     {
-
-        private readonly List<IEnemy> _enemies;
+	    
 		private readonly IControllerMovementSystem _playerMovementSystem;
 		private readonly IPlayer _player;
 		private readonly IPlayerHealthSystem _healthSystem;
 
 		public EnemyHitSystem(List<IEnemy> enemies, IControllerMovementSystem playerMovementSystem, IPlayer player, IPlayerHealthSystem healthSystem)
         {
-            _enemies = enemies;
-			_playerMovementSystem = playerMovementSystem;
+	        _playerMovementSystem = playerMovementSystem;
 			_player = player;
 			_healthSystem = healthSystem;
 			foreach (var enemy in enemies)
@@ -31,8 +29,15 @@ namespace DAATS.System
 				return;
 			
 			_healthSystem.DealDamage(enemy);
+			var bounceVector = _playerMovementSystem.MoveVector * -1 * enemy.HitBounceDistance;
+			if (enemy is IMovableEnemy movableEnemy)
+			{
+				bounceVector = (movableEnemy.Transform.forward - _playerMovementSystem.MoveVector) *
+				               enemy.HitBounceDistance;
+			}
+			
 			_playerMovementSystem.BlockMove(false);
-			_playerMovementSystem.SetFinalPosition(_playerMovementSystem.MoveVector * -1 * enemy.HitBounceDistance);
+			_playerMovementSystem.SetFinalPosition(bounceVector);
 			_playerMovementSystem.BlockMove(true);
         }
     }

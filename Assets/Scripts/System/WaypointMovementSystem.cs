@@ -1,5 +1,4 @@
-﻿using System;
-using DAATS.Component.Interface;
+﻿using DAATS.Component.Interface;
 using DAATS.System.Interface;
 using UnityEngine;
 
@@ -8,7 +7,7 @@ namespace DAATS.Initializer.System
     public class WaypointMovementSystem : IWaypointMovementSystem
     {
         //Distance where we think that object meet final position
-        public static readonly float DISTANCE_THRESHOLD = 0.005f;
+        public static readonly float DISTANCE_THRESHOLD = 0.05f;
         private readonly Transform _moveTransform;
         private readonly IWaypointEnemy _enemy;
         
@@ -25,10 +24,7 @@ namespace DAATS.Initializer.System
             get
             {
                 var moveVector = (_endPosition - _currentPosition).normalized;
-                if (moveVector != Vector3.zero)
-                    return moveVector;
-
-                return _moveTransform.forward.normalized;
+                return moveVector != Vector3.zero ? moveVector : _moveTransform.forward.normalized;
             }
         }
 
@@ -37,6 +33,7 @@ namespace DAATS.Initializer.System
             _enemy = waypointEnemy;
             _moveTransform = waypointEnemy.Transform;
             _enabled = _enemy.Enalbed;
+            _speed = _enemy.Speed;
             _enemy.SubscribeOnEnableStateChanges(OnStateChanged);
         }
 
@@ -50,8 +47,7 @@ namespace DAATS.Initializer.System
             if(!_enabled) return;
             Move(deltaTime);
             if (!_moveFinished) return;
-            SetNewMovePoint(_enemy.Transform.position,
-                _enemy.Waypoints[_moveIndex].Position, _enemy.Speed);
+            SetNewMovePoint(_enemy.Transform.position, _enemy.Waypoints[_moveIndex].Position);
         }
 
         public void SetPosition(Vector3 position)
@@ -73,12 +69,11 @@ namespace DAATS.Initializer.System
             SetPosition(finalDistPosition);
         }
 
-        private void SetNewMovePoint(Vector3 startPosition, Vector3 endPosition, float speed)
+        private void SetNewMovePoint(Vector3 startPosition, Vector3 endPosition)
         {
             _moveTransform.transform.position = startPosition;
             _currentPosition = startPosition;
             _endPosition = new Vector3(endPosition.x, startPosition.y, endPosition.z);
-            _speed = speed;
             _moveFinished = false;
 
             if (_moveIndex == _enemy.Waypoints.Count - 1)

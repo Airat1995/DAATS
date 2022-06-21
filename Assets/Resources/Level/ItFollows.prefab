@@ -102,6 +102,8 @@ MonoBehaviour:
   _portal: []
   _walls: []
   _slidingTiles: []
+  _activatorTiles: []
+  _deactivatorTiles: []
 --- !u!1 &7004362894055003009
 GameObject:
   m_ObjectHideFlags: 0
